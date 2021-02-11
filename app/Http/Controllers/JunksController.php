@@ -12,7 +12,6 @@ class JunksController extends Controller
 {   
     public function get_data(){
         $items=[];
-        $deleted=[];
         $items["Company"]= Company::where('deleted_at' , '<>' , 'null')->count();
         $items["Department"]= Department::where('deleted_at' , '<>' , 'null')->count();
         $items["Section"]= Section::where('deleted_at' , '<>' , 'null')->count();
@@ -30,7 +29,4 @@ class JunksController extends Controller
     public function retrieve_data(Request $req){
             
     }
-
-
-
 }

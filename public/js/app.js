@@ -2774,6 +2774,26 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2975,33 +2995,66 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       show: false,
-      count: [],
+      CategoryData: [],
       dialog: false,
       ImgUrl: __webpack_require__(/*! ../../images/company.jpeg */ "./resources/images/company.jpeg"),
       companies_deleted: [],
-      isRetrieve: false,
-      deleteddata: []
-    };
+      isRetrieve: false
+    }, _defineProperty(_ref, "CategoryData", []), _defineProperty(_ref, "categories", null), _defineProperty(_ref, "get_deleted", []), _defineProperty(_ref, "category", null), _ref;
   },
   created: function created() {
     var _this = this;
 
     axios.get('api/junks').then(function (res) {
-      _this.count = res.data;
-      _this.companies_deleted = res.data["Company_del"];
+      _this.CategoryData = res.data; // console.log(this.CategoryData )
+      // adding deleteflg as column
+
       var i = 0;
 
-      for (i = 0; i < _this.companies_deleted.length; i++) {
-        Vue.set(_this.companies_deleted[i], 'deleteflg', false);
-        console.log(_this.companies_deleted[i]);
+      for (i = 0; i < _this.CategoryData.length; i++) {
+        Vue.set(_this.CategoryData[i], 'deleteflg', false); // console.log(this.companies_deleted[i]) 
       }
     });
   },
+  computed: {
+    deletedData: function deletedData() {
+      if (this.category == 'company') {
+        return this.CategoryData["Company_del"];
+      } else if (this.category == 'department') {
+        return this.CategoryData["Department_del"];
+      } else if (this.category == 'section') {
+        return this.CategoryData["Section_del"];
+      } else if (this.category == 'employee') {
+        return this.CategoryData["Employee_del"];
+      }
+    }
+  },
   methods: {
-    company: function company() {
-      this.dialog = true;
+    viewdialog: function viewdialog(category) {
+      this.category = category;
+      var i = 0;
+
+      for (i = 0; i < this.deletedData.length; i++) {
+        if (this.category == 'company') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].company_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].company_name);
+        } else if (this.category == 'department') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].department_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].department_name);
+        } else if (this.category == 'section') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].section_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].section_name);
+        } else if (this.category == 'employee') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].employee_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].employee_name);
+        }
+
+        Vue.set(this.deletedData[i], 'retrieveFlg', false);
+      }
     },
     retrieve: function retrieve(index) {
       Vue.set(this.companies_deleted, 'company');
@@ -4046,10 +4099,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       img: __webpack_require__(/*! ../../images/acc1.png */ "./resources/images/acc1.png"),
+      count: [],
       chartOptions: {
         chart: {
           type: 'column'
@@ -4099,7 +4165,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  created: function created() {}
+  created: function created() {
+    var _this = this;
+
+    axios.get('api/home').then(function (res) {
+      _this.count = res.data;
+      console.log(_this.count);
+    });
+  }
 });
 
 /***/ }),
@@ -8792,6 +8865,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n.rounded{\r\n  border-radius:500px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.img[data-v-14328e86]{\n-o-object-fit: cover;\n   object-fit: cover;\n}\n", ""]);
 
 // exports
 
@@ -40599,6 +40691,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home.vue?vue&type=style&index=0&id=fa6affac&scoped=true&lang=css&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home.vue?vue&type=style&index=0&id=fa6affac&scoped=true&lang=css& ***!
@@ -42756,12 +42878,7 @@ var render = function() {
                                 expression: "show"
                               }
                             ],
-                            attrs: { height: "300px" },
-                            on: {
-                              click: function($event) {
-                                return _vm.company()
-                              }
-                            }
+                            attrs: { height: "300px" }
                           },
                           [
                             _c(
@@ -42777,12 +42894,12 @@ var render = function() {
                                       {
                                         attrs: {
                                           color: "pink",
-                                          content: _vm.count["Company"]
+                                          content: _vm.CategoryData["Company"]
                                         }
                                       },
                                       [
                                         _vm._v(
-                                          "\r\n                          Company\r\n                      "
+                                          "\r\n                                              Company\r\n                                          "
                                         )
                                       ]
                                     )
@@ -42792,178 +42909,34 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            [
-                              _c(
-                                "v-dialog",
-                                {
-                                  attrs: { width: "50%" },
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "activator",
-                                        fn: function(ref) {
-                                          var on = ref.on
-                                          var attrs = ref.attrs
-                                          return [
-                                            _c("v-expand-transition", [
-                                              hover
-                                                ? _c(
-                                                    "div",
-                                                    _vm._g(
-                                                      _vm._b(
-                                                        {
-                                                          staticClass:
-                                                            "d-flex \r\n                                    transition-fast-in-fast-out\r\n                                    grey lighten-1\r\n                                    v-card--reveal \r\n                                    display-3 \r\n                                    white--text",
-                                                          staticStyle: {
-                                                            height: "227.5px",
-                                                            "background-color":
-                                                              "green"
-                                                          },
-                                                          on: {
-                                                            click: function(
-                                                              $event
-                                                            ) {
-                                                              return _vm.company()
-                                                            }
-                                                          }
-                                                        },
-                                                        "div",
-                                                        attrs,
-                                                        false
-                                                      ),
-                                                      on
-                                                    ),
-                                                    [
-                                                      _vm._v(
-                                                        "company\r\n                            "
-                                                      )
-                                                    ]
-                                                  )
-                                                : _vm._e()
-                                            ])
-                                          ]
+                            _c("v-expand-transition", [
+                              hover
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "d-flex \r\n                                  transition-fast-in-fast-out\r\n                                  grey lighten-1\r\n                                  v-card--reveal \r\n                                  display-3 \r\n                                  white--text",
+                                      staticStyle: {
+                                        height: "227.5px",
+                                        "background-color": "green"
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.viewdialog("company"),
+                                            (_vm.dialog = !_vm.dialog)
                                         }
                                       }
-                                    ],
-                                    null,
-                                    true
-                                  ),
-                                  model: {
-                                    value: _vm.dialog,
-                                    callback: function($$v) {
-                                      _vm.dialog = $$v
                                     },
-                                    expression: "dialog"
-                                  }
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-card",
                                     [
-                                      _c("v-img", {
-                                        attrs: {
-                                          "margin-top": "20px",
-                                          height: "200px",
-                                          width: "650px",
-                                          src: _vm.ImgUrl
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-card-text",
-                                        [
-                                          _c("v-simple-table", [
-                                            _c("thead", [
-                                              _c("th", [_vm._v("No")]),
-                                              _vm._v(" "),
-                                              _c("th", [
-                                                _vm._v("Company Name")
-                                              ]),
-                                              _vm._v(" "),
-                                              _c("th", [_vm._v(" Retrieve")])
-                                            ]),
-                                            _vm._v(" "),
-                                            _c(
-                                              "tbody",
-                                              _vm._l(
-                                                _vm.companies_deleted,
-                                                function(item, index) {
-                                                  return _c(
-                                                    "tr",
-                                                    { key: index },
-                                                    [
-                                                      _c("td", [
-                                                        _vm._v(
-                                                          _vm._s(index + 1)
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c("td", [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            item.company_name
-                                                          )
-                                                        )
-                                                      ]),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        [
-                                                          _c("v-checkbox", {
-                                                            on: {
-                                                              click: function(
-                                                                $event
-                                                              ) {
-                                                                return _vm.retrieve(
-                                                                  index
-                                                                )
-                                                              }
-                                                            },
-                                                            model: {
-                                                              value:
-                                                                _vm
-                                                                  .companies_deleted[
-                                                                  index
-                                                                ].deleteflg,
-                                                              callback: function(
-                                                                $$v
-                                                              ) {
-                                                                _vm.$set(
-                                                                  _vm
-                                                                    .companies_deleted[
-                                                                    index
-                                                                  ],
-                                                                  "deleteflg",
-                                                                  $$v
-                                                                )
-                                                              },
-                                                              expression:
-                                                                "companies_deleted[index].deleteflg"
-                                                            }
-                                                          })
-                                                        ],
-                                                        1
-                                                      )
-                                                    ]
-                                                  )
-                                                }
-                                              ),
-                                              0
-                                            )
-                                          ])
-                                        ],
-                                        1
+                                      _vm._v(
+                                        "company\r\n                          "
                                       )
-                                    ],
-                                    1
+                                    ]
                                   )
-                                ],
-                                1
-                              )
-                            ]
+                                : _vm._e()
+                            ])
                           ],
-                          2
+                          1
                         )
                       ],
                       1
@@ -42972,9 +42945,122 @@ var render = function() {
                 }
               }
             ])
-          })
+          }),
+          _vm._v(" "),
+          [
+            _c(
+              "v-dialog",
+              {
+                attrs: { width: "50%" },
+                model: {
+                  value: _vm.dialog,
+                  callback: function($$v) {
+                    _vm.dialog = $$v
+                  },
+                  expression: "dialog"
+                }
+              },
+              [
+                _c(
+                  "v-card",
+                  [
+                    _c("v-img", {
+                      attrs: {
+                        height: "200px",
+                        width: "650px",
+                        "margin-top": "20px",
+                        src: _vm.ImgUrl
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("v-card-title", [
+                      _c(
+                        "div",
+                        { staticClass: "text-center" },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "mx-15",
+                              attrs: { color: "primary", icon: "" }
+                            },
+                            [
+                              _c("v-icon", { attrs: { fab: "", large: "" } }, [
+                                _vm._v("mdi-rotate-right")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            { attrs: { color: "primary", icon: "" } },
+                            [
+                              _c("v-icon", { attrs: { fab: "", large: "" } }, [
+                                _vm._v("mdi-check")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "v-card-text",
+                      [
+                        _c("v-simple-table", [
+                          _c("thead", [
+                            _c("th", [_vm._v("No")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("Company Name")]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(" Select")])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.deletedData, function(item, index) {
+                              return _c("tr", { key: index }, [
+                                _c("td", [_vm._v(_vm._s(index + 1))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(item.name))]),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c("v-checkbox", {
+                                      model: {
+                                        value: item.retrieveFlg,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "retrieveFlg", $$v)
+                                        },
+                                        expression: "item.retrieveFlg"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            }),
+                            0
+                          )
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-card-actions")
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c(
@@ -43018,12 +43104,13 @@ var render = function() {
                                       {
                                         attrs: {
                                           color: "pink",
-                                          content: _vm.count["Department"]
+                                          content:
+                                            _vm.CategoryData["Department"]
                                         }
                                       },
                                       [
                                         _vm._v(
-                                          "\r\n                                Department\r\n                            "
+                                          "\r\n                                              Department\r\n                                          "
                                         )
                                       ]
                                     )
@@ -43039,12 +43126,18 @@ var render = function() {
                                     "div",
                                     {
                                       staticClass:
-                                        "d-flex \r\n                          transition-fast-in-fast-out\r\n                          grey lighten-1\r\n                          v-card--reveal \r\n                          display-3 \r\n                          white--text",
-                                      staticStyle: { height: "227.5px" }
+                                        "d-flex \r\n                                        transition-fast-in-fast-out\r\n                                        grey lighten-1\r\n                                        v-card--reveal \r\n                                        display-3 \r\n                                        white--text",
+                                      staticStyle: { height: "227.5px" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.viewdialog("department"),
+                                            (_vm.dialog = !_vm.dialog)
+                                        }
+                                      }
                                     },
                                     [
                                       _vm._v(
-                                        "\r\n                        Department\r\n                        "
+                                        "\r\n                                            Department\r\n                                      "
                                       )
                                     ]
                                   )
@@ -43106,7 +43199,7 @@ var render = function() {
                                       {
                                         attrs: {
                                           color: "pink",
-                                          content: _vm.count["Section"]
+                                          content: _vm.CategoryData["Section"]
                                         }
                                       },
                                       [
@@ -43128,7 +43221,13 @@ var render = function() {
                                     {
                                       staticClass:
                                         "d-flex \r\n            transition-fast-in-fast-out\r\n             grey lighten-1\r\n             v-card--reveal \r\n             display-3 \r\n             white--text",
-                                      staticStyle: { height: "227.5px" }
+                                      staticStyle: { height: "227.5px" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.viewdialog("section"),
+                                            (_vm.dialog = !_vm.dialog)
+                                        }
+                                      }
                                     },
                                     [
                                       _vm._v(
@@ -43193,7 +43292,7 @@ var render = function() {
                                       {
                                         attrs: {
                                           color: "pink",
-                                          content: _vm.count["Employee"]
+                                          content: _vm.CategoryData["Employee"]
                                         }
                                       },
                                       [
@@ -43215,7 +43314,13 @@ var render = function() {
                                     {
                                       staticClass:
                                         "d-flex \r\n            transition-fast-in-fast-out\r\n             grey lighten-1\r\n             v-card--reveal \r\n             display-3 \r\n             white--text",
-                                      staticStyle: { height: "227.5px" }
+                                      staticStyle: { height: "227.5px" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.viewdialog("employee"),
+                                            (_vm.dialog = !_vm.dialog)
+                                        }
+                                      }
                                     },
                                     [
                                       _vm._v(
@@ -44636,7 +44741,7 @@ var render = function() {
                             "font-color": "blue"
                           }
                         },
-                        [_vm._v("3")]
+                        [_vm._v(_vm._s(this.count["Employee"]))]
                       )
                     ],
                     1
@@ -44657,7 +44762,19 @@ var render = function() {
                         [_vm._v("mdi-account-lock")]
                       ),
                       _vm._v(
-                        "\n                                        Users\n                                        "
+                        "\n                                        Users\n                                         "
+                      ),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            "font-size": "20px",
+                            "font-color": "blue"
+                          }
+                        },
+                        [_vm._v(_vm._s(this.count["User"]))]
                       )
                     ],
                     1
@@ -44686,7 +44803,19 @@ var render = function() {
                         [_vm._v("mdi-domain")]
                       ),
                       _vm._v(
-                        "  \n                                    Company\n                                "
+                        "  \n                                    Company\n                                     "
+                      ),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            "font-size": "20px",
+                            "font-color": "blue"
+                          }
+                        },
+                        [_vm._v(_vm._s(this.count["Company"]))]
                       )
                     ],
                     1
@@ -44707,7 +44836,19 @@ var render = function() {
                         [_vm._v("mdi-account-group")]
                       ),
                       _vm._v(
-                        "\n                                        Department\n                                    "
+                        "\n                                        Department\n                                         "
+                      ),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            "font-size": "20px",
+                            "font-color": "blue"
+                          }
+                        },
+                        [_vm._v(_vm._s(this.count["Department"]))]
                       )
                     ],
                     1
@@ -44729,7 +44870,19 @@ var render = function() {
                         [_vm._v("mdi-chart-pie")]
                       ),
                       _vm._v(
-                        "\n                                        Sections\n                                    "
+                        "\n                                        Sections\n                                         "
+                      ),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: {
+                            "font-size": "20px",
+                            "font-color": "blue"
+                          }
+                        },
+                        [_vm._v(_vm._s(this.count["Section"]))]
                       )
                     ],
                     1
@@ -106721,7 +106874,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _JunksComponents_vue_vue_type_template_id_14328e86_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./JunksComponents.vue?vue&type=template&id=14328e86&scoped=true& */ "./resources/js/components/JunksComponents.vue?vue&type=template&id=14328e86&scoped=true&");
 /* harmony import */ var _JunksComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./JunksComponents.vue?vue&type=script&lang=js& */ "./resources/js/components/JunksComponents.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _JunksComponents_vue_vue_type_style_index_0_id_14328e86_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css& */ "./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -106729,7 +106884,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _JunksComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _JunksComponents_vue_vue_type_template_id_14328e86_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _JunksComponents_vue_vue_type_template_id_14328e86_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -106758,6 +106913,22 @@ component.options.__file = "resources/js/components/JunksComponents.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JunksComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./JunksComponents.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/JunksComponents.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_JunksComponents_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css& ***!
+  \**************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JunksComponents_vue_vue_type_style_index_0_id_14328e86_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/JunksComponents.vue?vue&type=style&index=0&id=14328e86&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JunksComponents_vue_vue_type_style_index_0_id_14328e86_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JunksComponents_vue_vue_type_style_index_0_id_14328e86_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JunksComponents_vue_vue_type_style_index_0_id_14328e86_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_JunksComponents_vue_vue_type_style_index_0_id_14328e86_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
 
 /***/ }),
 

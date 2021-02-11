@@ -26,7 +26,6 @@
 
                 </v-row>
             </v-col>
-
             <v-col cols=3>
                            <v-card class="my-3">
                                     <v-card-title  >
@@ -41,7 +40,7 @@
                                     <v-icon   color="blue" x-large>mdi-account-outline</v-icon>
                               Employees
                                 <v-spacer></v-spacer>
-                              <span style="font-size:20px; font-color:blue;">3</span>
+                                <span style="font-size:20px; font-color:blue;" >{{this.count["Employee"]}}</span>
                                 </v-card-title>
                            
                          
@@ -51,6 +50,10 @@
                                     <v-card-title  >
                                         <v-icon   color="green" x-large>mdi-account-lock</v-icon>
                                         Users
+                                         <v-spacer></v-spacer>
+                                        <span style="font-size:20px; font-color:blue;" 
+                                        >{{this.count["User"]}}</span>
+                               
                                         </v-card-title>
                                 
 
@@ -62,6 +65,9 @@
                                 <v-card-title  >
                                     <v-icon   color="black" x-large>mdi-domain</v-icon>  
                                     Company
+                                     <v-spacer></v-spacer>
+                                        <span style="font-size:20px; font-color:blue;" 
+                                        >{{this.count["Company"]}}</span>
                                 </v-card-title>
                 
                             </v-card>
@@ -71,6 +77,9 @@
                                     <v-card-title  >
                                         <v-icon   color="teal" x-large>mdi-account-group</v-icon>
                                         Department
+                                         <v-spacer></v-spacer>
+                                        <span style="font-size:20px; font-color:blue;" 
+                                        >{{this.count["Department"]}}</span>
                                     </v-card-title>
                               
                             </v-card>
@@ -80,6 +89,9 @@
                                     <v-card-title  >
                                         <v-icon   color="orange" x-large>mdi-chart-pie</v-icon>
                                         Sections
+                                         <v-spacer></v-spacer>
+                                        <span style="font-size:20px; font-color:blue;" 
+                                        >{{this.count["Section"]}}</span>
                                     </v-card-title>
                                     
                             </v-card>
@@ -106,6 +118,7 @@ export default {
     data(){
         return{
               img:require('../../images/acc1.png'),
+              count:[],
               chartOptions:{
                     chart: {
                         type: 'column'
@@ -175,6 +188,10 @@ export default {
                         }
     },
     created(){
+        axios.get('api/home' ).then(res=>{
+                    this.count=res.data
+                    console.log(this.count)
+        })
           
     }
 
