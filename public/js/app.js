@@ -2195,6 +2195,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2217,9 +2218,22 @@ __webpack_require__.r(__webpack_exports__);
       _this.departments = res.data.Department;
     });
   },
+  computed: {
+    dept: function dept() {
+      var _this2 = this;
+
+      if (this.company_code == null) {
+        return this.departments;
+      } else {
+        return this.departments.filter(function (rec) {
+          return rec.company_code == _this2.company_code;
+        });
+      }
+    }
+  },
   methods: {
     save: function save() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post('api/department', {
         action: this.action,
@@ -2234,7 +2248,7 @@ __webpack_require__.r(__webpack_exports__);
           alert('Department already existed');
         } else {
           // alert('refresh')
-          _this2.departments = res.data.Department;
+          _this3.departments = res.data.Department;
         }
       });
     },
@@ -2253,7 +2267,7 @@ __webpack_require__.r(__webpack_exports__);
       this.action = 'ADD';
     },
     Delete: function Delete(companyCode, deptcode) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (confirm('Are you sure you want to delete? ')) {
         this.action = "DELETE";
@@ -2262,7 +2276,7 @@ __webpack_require__.r(__webpack_exports__);
           company_code: companyCode,
           department_code: deptcode
         }).then(function (res) {
-          _this3.departments = res.data.Department;
+          _this4.departments = res.data.Department;
         });
       }
     }
@@ -3725,6 +3739,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3759,11 +3775,26 @@ __webpack_require__.r(__webpack_exports__);
       return this.departments.filter(function (rec) {
         return rec.company_code == _this2.company_code;
       });
+    },
+    sec: function sec() {
+      var _this3 = this;
+
+      if (this.company_code == null) {
+        return this.sections;
+      } else if (this.company_code != null && this.department_code != null) {
+        return this.sections.filter(function (rec) {
+          return rec.company_code == _this3.company_code && rec.department_code == _this3.department_code;
+        });
+      } else if (this.company_code != null && this.department_code == null) {
+        return this.sections.filter(function (rec) {
+          return rec.company_code == _this3.company_code;
+        });
+      }
     }
   },
   methods: {
     save: function save() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post('api/section', {
         action: this.action,
@@ -3782,7 +3813,7 @@ __webpack_require__.r(__webpack_exports__);
           alert('Section already exist');
         } else {
           alert('refresh');
-          _this3.sections = res.data.Section;
+          _this4.sections = res.data.Section;
         }
       });
     },
@@ -3806,7 +3837,7 @@ __webpack_require__.r(__webpack_exports__);
       this.action = 'ADD';
     },
     Delete: function Delete(companyCode, deptcode, secCode) {
-      var _this4 = this;
+      var _this5 = this;
 
       if (confirm('Are you sure you want to delete? ')) {
         this.action = "DELETE";
@@ -3816,7 +3847,7 @@ __webpack_require__.r(__webpack_exports__);
           department_code: deptcode,
           section_code: secCode
         }).then(function (res) {
-          _this4.sections = res.data.Section;
+          _this5.sections = res.data.Section;
         });
       }
     }
@@ -41748,7 +41779,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.departments, function(item, index) {
+                  _vm._l(_vm.dept, function(item, index) {
                     return _c("tr", { key: index }, [
                       _c("td", [_vm._v(_vm._s(index + 1))]),
                       _vm._v(" "),
@@ -44324,7 +44355,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.sections, function(item, index) {
+                  _vm._l(_vm.sec, function(item, index) {
                     return _c("tr", { key: index }, [
                       _c("td", [_vm._v(_vm._s(index + 1))]),
                       _vm._v(" "),

@@ -39,6 +39,7 @@
                 </v-col>
         </v-row>
 
+
       <v-simple-table >
         <template v-slot:default>
 
@@ -58,7 +59,7 @@
 
                 <tbody>
                       <tr
-                        v-for="(item, index)  in departments"  
+                        v-for="(item, index)  in dept"  
                         :key="index"
                       >
                             <td>{{ index + 1 }}</td>
@@ -122,6 +123,21 @@ export default {
 				              this.departments=res.data.Department
 				        })
 				},
+
+        computed:{
+              dept(){
+                if(this.company_code == null){
+                  return this.departments
+                }else{
+                     return this.departments.filter(
+                  rec=> {
+                    return  rec.company_code == this.company_code
+                  }
+                )
+                }
+             
+              }
+        },
 			  methods:{
 			  
 			      save(){

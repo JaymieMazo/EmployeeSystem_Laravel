@@ -51,6 +51,8 @@
                 </v-col>
         </v-row>
 
+
+
       <v-simple-table >
       
         <template v-slot:default>
@@ -73,7 +75,7 @@
 
                 <tbody>
                       <tr
-                        v-for="(item, index)  in sections"  
+                        v-for="(item, index)  in sec"  
                         :key="index"
                       >
                             <td>{{ index + 1 }}</td>
@@ -160,13 +162,31 @@ export default {
 				},
 
 
-
-
       computed:{
         filteredDept(){
           return this.departments.filter(rec=>{
                 return rec.company_code == this.company_code 
           })
+        },
+
+        sec(){
+
+          if(this.company_code == null){
+              return  this.sections
+          }
+
+          else if(this.company_code != null  && this.department_code != null){
+            return this.sections.filter(rec=> {
+              return rec.company_code == this.company_code && rec.department_code == this.department_code
+            })
+          }  else if(this.company_code != null  && this.department_code == null){
+              return this.sections.filter(rec=> {
+              return rec.company_code == this.company_code
+            })
+          }
+
+
+        
         }
       }, 
 
