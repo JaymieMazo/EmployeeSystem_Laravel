@@ -73,16 +73,19 @@
                                           <v-card-actions>
 
                                       <div class="ma-auto">
-                                          <label>RETRIEVE</label>
+                                          <span class="ret">RETRIEVE</span>
                                            <v-btn icon   v-model="btnRetrieve" @click="mRetrieve()">
                                        
                                               <v-icon large color="primary">mdi-rotate-right</v-icon>
                                            </v-btn>
                                                   
-                                             <label>SELECT ALL</label>
-                                             <v-btn icon large color="primary" v-model="btnSelAll" >
-                                              <v-icon>mdi-check</v-icon>
-                                           </v-btn>
+                                                  <div>
+                                         
+                                             <v-checkbox class="ret"  large color="primary" v-model="btnSelAll"   @click="mSelectAll()  " label="SELECT ALL" >
+                                                                </v-checkbox></div>
+                                          
+
+                        
                                             </div>
                                           </v-card-actions>
                                      
@@ -280,23 +283,32 @@ computed:{
 
     },
 
+
+
         viewdialog(category){
+
+          
           this.category=category
+          this.btnSelAll=false
 
           var i=0
 
             this.deletedData=this.deletedData1
             for(i = 0 ; i < this.deletedData1.length; i++){
-            this.editData(i)
+            this.editData(i , false)
             }
 
         
         },
 
 
-          editData(i){
+          editData(i , isSelectAll){
+
+            if(isSelectAll  == false){
+                        
+               
                     if(this.category=='Company'){
-                        Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].company_code)
+                          Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].company_code)
                         Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].company_name)
                     }
                     
@@ -315,7 +327,13 @@ computed:{
                         Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].employee_name)  
                     }
                       Vue.set(this.deletedData[i], 'retrieveFlg' ,false)
-                    },
+
+                    }
+              else{
+                          this.deletedData[i].retrieveFlg =this.btnSelAll 
+                     }
+                          
+       },
 
 
 
@@ -333,13 +351,23 @@ computed:{
                               this.deletedData=[]
                               this.deletedData=res.data[this.category]
                               var i=0;
-                              alert(this.category)
+                              
                               for(i=0; i  < res.data[this.category].length ;i++){
-                                  this.editData(i)   
+                                  this.editData(i , false)   
                               }
                             })
 
       }, 
+
+      mSelectAll(){   
+
+          var i=0
+          for(i=0; i < this.deletedData.length; i++){
+                  this.editData(i , true )
+          }
+       
+
+      }
   }, 
 
 
@@ -355,6 +383,12 @@ computed:{
 <style scoped>
   .img{
   object-fit: cover;
+  }
+
+  .ret{
+    font-size:15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color:grey
   }
 </style>
 

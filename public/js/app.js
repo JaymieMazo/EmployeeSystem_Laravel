@@ -2987,6 +2987,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -3030,29 +3033,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     viewdialog: function viewdialog(category) {
       this.category = category;
+      this.btnSelAll = false;
       var i = 0;
       this.deletedData = this.deletedData1;
 
       for (i = 0; i < this.deletedData1.length; i++) {
-        this.editData(i);
+        this.editData(i, false);
       }
     },
-    editData: function editData(i) {
-      if (this.category == 'Company') {
-        Vue.set(this.deletedData[i], 'id', this.deletedData[i].company_code);
-        Vue.set(this.deletedData[i], 'name', this.deletedData[i].company_name);
-      } else if (this.category == 'Department') {
-        Vue.set(this.deletedData[i], 'id', this.deletedData[i].department_code);
-        Vue.set(this.deletedData[i], 'name', this.deletedData[i].department_name);
-      } else if (this.category == 'Section') {
-        Vue.set(this.deletedData[i], 'id', this.deletedData[i].section_code);
-        Vue.set(this.deletedData[i], 'name', this.deletedData[i].section_name);
-      } else if (this.category == 'Employee') {
-        Vue.set(this.deletedData[i], 'id', this.deletedData[i].employee_code);
-        Vue.set(this.deletedData[i], 'name', this.deletedData[i].employee_name);
-      }
+    editData: function editData(i, isSelectAll) {
+      if (isSelectAll == false) {
+        if (this.category == 'Company') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].company_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].company_name);
+        } else if (this.category == 'Department') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].department_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].department_name);
+        } else if (this.category == 'Section') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].section_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].section_name);
+        } else if (this.category == 'Employee') {
+          Vue.set(this.deletedData[i], 'id', this.deletedData[i].employee_code);
+          Vue.set(this.deletedData[i], 'name', this.deletedData[i].employee_name);
+        }
 
-      Vue.set(this.deletedData[i], 'retrieveFlg', false);
+        Vue.set(this.deletedData[i], 'retrieveFlg', false);
+      } else {
+        this.deletedData[i].retrieveFlg = this.btnSelAll;
+      }
     },
     mRetrieve: function mRetrieve() {
       var _this3 = this;
@@ -3073,12 +3081,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.deletedData = [];
         _this3.deletedData = res.data[_this3.category];
         var i = 0;
-        alert(_this3.category);
 
         for (i = 0; i < res.data[_this3.category].length; i++) {
-          _this3.editData(i);
+          _this3.editData(i, false);
         }
       });
+    },
+    mSelectAll: function mSelectAll() {
+      var i = 0;
+
+      for (i = 0; i < this.deletedData.length; i++) {
+        this.editData(i, true);
+      }
     }
   },
   mounted: function mounted() {
@@ -8903,7 +8917,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.img[data-v-14328e86]{\n-o-object-fit: cover;\n   object-fit: cover;\n}\n", ""]);
+exports.push([module.i, "\n.img[data-v-14328e86]{\n-o-object-fit: cover;\n   object-fit: cover;\n}\n.ret[data-v-14328e86]{\n  font-size:15px;\n  font-family:Verdana, Geneva, Tahoma, sans-serif;\n  color:grey\n}\n", ""]);
 
 // exports
 
@@ -43045,7 +43059,9 @@ var render = function() {
                         "div",
                         { staticClass: "ma-auto" },
                         [
-                          _c("label", [_vm._v("RETRIEVE")]),
+                          _c("span", { staticClass: "ret" }, [
+                            _vm._v("RETRIEVE")
+                          ]),
                           _vm._v(" "),
                           _c(
                             "v-btn",
@@ -43074,21 +43090,30 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c("label", [_vm._v("SELECT ALL")]),
-                          _vm._v(" "),
                           _c(
-                            "v-btn",
-                            {
-                              attrs: { icon: "", large: "", color: "primary" },
-                              model: {
-                                value: _vm.btnSelAll,
-                                callback: function($$v) {
-                                  _vm.btnSelAll = $$v
+                            "div",
+                            [
+                              _c("v-checkbox", {
+                                staticClass: "ret",
+                                attrs: {
+                                  large: "",
+                                  color: "primary",
+                                  label: "SELECT ALL"
                                 },
-                                expression: "btnSelAll"
-                              }
-                            },
-                            [_c("v-icon", [_vm._v("mdi-check")])],
+                                on: {
+                                  click: function($event) {
+                                    return _vm.mSelectAll()
+                                  }
+                                },
+                                model: {
+                                  value: _vm.btnSelAll,
+                                  callback: function($$v) {
+                                    _vm.btnSelAll = $$v
+                                  },
+                                  expression: "btnSelAll"
+                                }
+                              })
+                            ],
                             1
                           )
                         ],
