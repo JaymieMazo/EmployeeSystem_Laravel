@@ -9,7 +9,7 @@
                                   <div class="pa-1">
                                       <v-badge
                                             color="pink"
-                                            :content="CategoryData['Company']"
+                                            :content="CategoryData['cntCompany']"
                                           >
                                               Company
                                           </v-badge> 
@@ -26,7 +26,7 @@
                                   display-3 
                                   white--text"
                                   style="height:227.5px;  background-color:green"
-                                  @click="viewdialog('company'), dialog=!dialog"
+                                  @click="viewdialog('Company'), dialog=!dialog"
                                 >company
                           </div>
                       </v-expand-transition>                  
@@ -44,25 +44,7 @@
                                   </v-img>
                                    
                                    <v-card-title>
-                                   <div class="text-center" >
-                                              <v-btn    
-                                              class="mx-15"   
-                                              color="primary" icon>
-                                              <v-icon
-                                              fab
-                                               large>mdi-rotate-right</v-icon>  
-                                               
-                                               </v-btn>
-                                               
-                                                <v-btn    
-                                                color="primary" icon>
-                                              <v-icon
-                                              fab
-                                               large>mdi-check</v-icon>  
-                                               </v-btn>
-                                                                                        
-                                        </div>
-                                         
+                       
 
                                    </v-card-title>
 
@@ -87,17 +69,29 @@
                                           </tbody>
                                           </v-simple-table>
                                           </v-card-text>
+                                       
                                           <v-card-actions>
 
-                           
-
+                                      <div class="ma-auto">
+                                          <label>RETRIEVE</label>
+                                           <v-btn icon   v-model="btnRetrieve" @click="mRetrieve()">
                                        
-                                                   
+                                              <v-icon large color="primary">mdi-rotate-right</v-icon>
+                                           </v-btn>
+                                                  
+                                             <label>SELECT ALL</label>
+                                             <v-btn icon large color="primary" v-model="btnSelAll" >
+                                              <v-icon>mdi-check</v-icon>
+                                           </v-btn>
+                                            </div>
                                           </v-card-actions>
+                                     
                                           </v-card>
+                                        
                                           </v-dialog>
                                           </template>
   </v-col>
+
   <!-- department -->
 <v-col cols=6>
               <v-hover v-slot="{hover}">
@@ -108,7 +102,7 @@
                                   <div class="pa-1">
                                       <v-badge
                                             color="pink"
-                                            :content="CategoryData['Department']"
+                                            :content="CategoryData['cntDepartment']"
                                           >
                                               Department
                                           </v-badge>
@@ -125,7 +119,7 @@
                                         display-3 
                                         white--text"
                                         style="height: 227.5px;"
-                                        @click="viewdialog('department'),  dialog=!dialog"
+                                        @click="viewdialog('Department'),  dialog=!dialog"
                                       >
                                             Department
                                       </div>
@@ -142,7 +136,7 @@
       <div class="pa-1">
           <v-badge
                 color="pink"
-                 :content="CategoryData['Section']"
+                 :content="CategoryData['cntSection']"
 
               >
                   Sections
@@ -160,7 +154,7 @@
              display-3 
              white--text"
             style="height: 227.5px;"
-            @click="viewdialog('section'),  dialog=!dialog"
+            @click="viewdialog('Section'),  dialog=!dialog"
           >
           Sections
           </div>
@@ -181,7 +175,7 @@
       <div class="pa-1">
           <v-badge
                 color="pink"
-                 :content="CategoryData['Employee']"
+                 :content="CategoryData['cntEmployee']"
               >
                   Employees
               </v-badge>
@@ -198,7 +192,7 @@
              display-3 
              white--text"
             style="height: 227.5px;"
-               @click="viewdialog('employee'),  dialog=!dialog"
+               @click="viewdialog('Employee'),  dialog=!dialog"
           >
           Employees
           </div>
@@ -218,93 +212,143 @@
 <script>
 export default {
  
-  data () {
-    return {
-      show:false,
-      CategoryData:[],
-      dialog:false,
-      ImgUrl: require('../../images/company.jpeg'),
-      companies_deleted:[],
-      isRetrieve:false,
-      CategoryData:[],
-      categories:null,
-      get_deleted:[],
-      category:null,
-      
 
-    }
+  data () {
+          return {
+                  show:false,
+                  CategoryData:[],
+                  dialog:false,
+                  ImgUrl: require('../../images/company.jpeg'),
+                  CategoryData:[],
+                  category:null,
+                  btnRetrieve:false, 
+                  btnSelAll:false,    
+                  retdata:{},
+                  deletedData:[],
+
+
+          }
   },
 
+
+
+
+
+
 created(){
-        axios.get('api/junks').then(res=>{
-         
-            this.CategoryData =res.data
-            // console.log(this.CategoryData )
-            // adding deleteflg as column
-            var i=0
-       for (i = 0; i < this.CategoryData.length; i++) {
-           Vue.set(this.CategoryData[i], 'deleteflg' , false)
-                // console.log(this.companies_deleted[i]) 
-            }
-        })
+                this.onLoaddialog()
+
 },
 
 
 
 computed:{     
-  deletedData(){
-              if(this.category=='company'){
-                    return this.CategoryData["Company_del"]
-                   
-              }else if (this.category=='department'){
-                    return this.CategoryData["Department_del"]
-                  
-              }else if (this.category=='section'){
-                     return this.CategoryData["Section_del"]
-              }else if (this.category=='employee'){
-                    return this.CategoryData["Employee_del"]
-              }
-  }
+          deletedData1(){
+                        return this.CategoryData[this.category]
+          }, 
+
+      test(){
+
+        return this.deletedData.filter(
+          rec=>{
+
+
+            return this.deletedData.retrieveFlg==false
+          }
+        )
+      }
+
+       
+                
+              
+          
 },
 
-
+          
   methods: {
+    onLoaddialog(){
+      axios.get('api/junks').then(res=>{
+                  this.CategoryData =res.data
+                  // console.log(this.CategoryData )
+                  // adding deleteflg as column
+                       
+                       var i=0
+                        for (i = 0; i < this.CategoryData.length; i++) {
+                          Vue.set(this.CategoryData[i], 'deleteflg' , false)
+                          }
+              })
+
+    },
+
         viewdialog(category){
-              this.category=category
-             var i=0
+          this.category=category
 
-            for(i = 0 ; i < this.deletedData.length; i++){
-              if(this.category=='company'){
-                  Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].company_code)
-                  Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].company_name)
-              }else if (this.category=='department'){
-                   Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].department_code)
-                   Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].department_name)
-              }else if (this.category=='section'){
-                   Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].section_code)
-                   Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].section_name)  
-              }else if (this.category=='employee'){
-                    Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].employee_code)
-                   Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].employee_name)  
-              }
-                
-                Vue.set(this.deletedData[i], 'retrieveFlg' ,false)
-               }
+          var i=0
 
+            this.deletedData=this.deletedData1
+            for(i = 0 ; i < this.deletedData1.length; i++){
+            this.editData(i)
+            }
 
-                 
-
+        
         },
-      
-        retrieve(index){
-          Vue.set(this.companies_deleted, 'company')
-          console.log(this.companies_deleted[index])
-          }, 
+
+
+          editData(i){
+                    if(this.category=='Company'){
+                        Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].company_code)
+                        Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].company_name)
+                    }
+                    
+                    else if (this.category=='Department'){
+                        Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].department_code)
+                        Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].department_name)
+                    }
+                    
+                    else if (this.category=='Section'){
+                        Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].section_code)
+                        Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].section_name)  
+                    }
+                    
+                    else if (this.category=='Employee'){
+                          Vue.set(this.deletedData[i], 'id' ,this.deletedData[i].employee_code)
+                        Vue.set(this.deletedData[i], 'name' ,this.deletedData[i].employee_name)  
+                    }
+                      Vue.set(this.deletedData[i], 'retrieveFlg' ,false)
+                    },
+
+
+
+        mRetrieve(){
+                      this.retdata=[]
+                      var i=0 
+                      for(i=0;i<this.deletedData.length; i++){
+                            if(this.deletedData[i].retrieveFlg == true){
+                                  this.retdata.push( this.deletedData[i].id
+                                  )
+                            }
+                      }
+
+                      axios.post('api/junks' ,{category:this.category, id: this.retdata} ).then(res=>{
+                              this.deletedData=[]
+                              this.deletedData=res.data[this.category]
+                              var i=0;
+                              alert(this.category)
+                              for(i=0; i  < res.data[this.category].length ;i++){
+                                  this.editData(i)   
+                                  
+                              }
+                            })
+
+      }, 
   }, 
+
+
 
   mounted(){
     this.show=true
   }, 
+
 
   
 }

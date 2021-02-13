@@ -2987,12 +2987,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -3001,64 +2995,90 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       show: false,
       CategoryData: [],
       dialog: false,
-      ImgUrl: __webpack_require__(/*! ../../images/company.jpeg */ "./resources/images/company.jpeg"),
-      companies_deleted: [],
-      isRetrieve: false
-    }, _defineProperty(_ref, "CategoryData", []), _defineProperty(_ref, "categories", null), _defineProperty(_ref, "get_deleted", []), _defineProperty(_ref, "category", null), _ref;
+      ImgUrl: __webpack_require__(/*! ../../images/company.jpeg */ "./resources/images/company.jpeg")
+    }, _defineProperty(_ref, "CategoryData", []), _defineProperty(_ref, "category", null), _defineProperty(_ref, "btnRetrieve", false), _defineProperty(_ref, "btnSelAll", false), _defineProperty(_ref, "retdata", {}), _defineProperty(_ref, "deletedData", []), _ref;
   },
   created: function created() {
-    var _this = this;
-
-    axios.get('api/junks').then(function (res) {
-      _this.CategoryData = res.data; // console.log(this.CategoryData )
-      // adding deleteflg as column
-
-      var i = 0;
-
-      for (i = 0; i < _this.CategoryData.length; i++) {
-        Vue.set(_this.CategoryData[i], 'deleteflg', false); // console.log(this.companies_deleted[i]) 
-      }
-    });
+    this.onLoaddialog();
   },
   computed: {
-    deletedData: function deletedData() {
-      if (this.category == 'company') {
-        return this.CategoryData["Company_del"];
-      } else if (this.category == 'department') {
-        return this.CategoryData["Department_del"];
-      } else if (this.category == 'section') {
-        return this.CategoryData["Section_del"];
-      } else if (this.category == 'employee') {
-        return this.CategoryData["Employee_del"];
-      }
+    deletedData1: function deletedData1() {
+      return this.CategoryData[this.category];
+    },
+    test: function test() {
+      var _this = this;
+
+      return this.deletedData.filter(function (rec) {
+        return _this.deletedData.retrieveFlg == false;
+      });
     }
   },
   methods: {
+    onLoaddialog: function onLoaddialog() {
+      var _this2 = this;
+
+      axios.get('api/junks').then(function (res) {
+        _this2.CategoryData = res.data; // console.log(this.CategoryData )
+        // adding deleteflg as column
+
+        var i = 0;
+
+        for (i = 0; i < _this2.CategoryData.length; i++) {
+          Vue.set(_this2.CategoryData[i], 'deleteflg', false);
+        }
+      });
+    },
     viewdialog: function viewdialog(category) {
       this.category = category;
       var i = 0;
+      this.deletedData = this.deletedData1;
 
-      for (i = 0; i < this.deletedData.length; i++) {
-        if (this.category == 'company') {
-          Vue.set(this.deletedData[i], 'id', this.deletedData[i].company_code);
-          Vue.set(this.deletedData[i], 'name', this.deletedData[i].company_name);
-        } else if (this.category == 'department') {
-          Vue.set(this.deletedData[i], 'id', this.deletedData[i].department_code);
-          Vue.set(this.deletedData[i], 'name', this.deletedData[i].department_name);
-        } else if (this.category == 'section') {
-          Vue.set(this.deletedData[i], 'id', this.deletedData[i].section_code);
-          Vue.set(this.deletedData[i], 'name', this.deletedData[i].section_name);
-        } else if (this.category == 'employee') {
-          Vue.set(this.deletedData[i], 'id', this.deletedData[i].employee_code);
-          Vue.set(this.deletedData[i], 'name', this.deletedData[i].employee_name);
-        }
-
-        Vue.set(this.deletedData[i], 'retrieveFlg', false);
+      for (i = 0; i < this.deletedData1.length; i++) {
+        this.editData(i);
       }
     },
-    retrieve: function retrieve(index) {
-      Vue.set(this.companies_deleted, 'company');
-      console.log(this.companies_deleted[index]);
+    editData: function editData(i) {
+      if (this.category == 'Company') {
+        Vue.set(this.deletedData[i], 'id', this.deletedData[i].company_code);
+        Vue.set(this.deletedData[i], 'name', this.deletedData[i].company_name);
+      } else if (this.category == 'Department') {
+        Vue.set(this.deletedData[i], 'id', this.deletedData[i].department_code);
+        Vue.set(this.deletedData[i], 'name', this.deletedData[i].department_name);
+      } else if (this.category == 'Section') {
+        Vue.set(this.deletedData[i], 'id', this.deletedData[i].section_code);
+        Vue.set(this.deletedData[i], 'name', this.deletedData[i].section_name);
+      } else if (this.category == 'Employee') {
+        Vue.set(this.deletedData[i], 'id', this.deletedData[i].employee_code);
+        Vue.set(this.deletedData[i], 'name', this.deletedData[i].employee_name);
+      }
+
+      Vue.set(this.deletedData[i], 'retrieveFlg', false);
+    },
+    mRetrieve: function mRetrieve() {
+      var _this3 = this;
+
+      this.retdata = [];
+      var i = 0;
+
+      for (i = 0; i < this.deletedData.length; i++) {
+        if (this.deletedData[i].retrieveFlg == true) {
+          this.retdata.push(this.deletedData[i].id);
+        }
+      }
+
+      axios.post('api/junks', {
+        category: this.category,
+        id: this.retdata
+      }).then(function (res) {
+        _this3.deletedData = [];
+        _this3.deletedData = res.data[_this3.category];
+        var i = 0;
+        alert(_this3.category);
+
+        for (i = 0; i < res.data[_this3.category].length; i++) {
+          _this3.editData(i);
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -42894,7 +42914,8 @@ var render = function() {
                                       {
                                         attrs: {
                                           color: "pink",
-                                          content: _vm.CategoryData["Company"]
+                                          content:
+                                            _vm.CategoryData["cntCompany"]
                                         }
                                       },
                                       [
@@ -42922,7 +42943,7 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          _vm.viewdialog("company"),
+                                          _vm.viewdialog("Company"),
                                             (_vm.dialog = !_vm.dialog)
                                         }
                                       }
@@ -42973,39 +42994,7 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _c("v-card-title", [
-                      _c(
-                        "div",
-                        { staticClass: "text-center" },
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "mx-15",
-                              attrs: { color: "primary", icon: "" }
-                            },
-                            [
-                              _c("v-icon", { attrs: { fab: "", large: "" } }, [
-                                _vm._v("mdi-rotate-right")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            { attrs: { color: "primary", icon: "" } },
-                            [
-                              _c("v-icon", { attrs: { fab: "", large: "" } }, [
-                                _vm._v("mdi-check")
-                              ])
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]),
+                    _c("v-card-title"),
                     _vm._v(" "),
                     _c(
                       "v-card-text",
@@ -43051,7 +43040,61 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c("v-card-actions")
+                    _c("v-card-actions", [
+                      _c(
+                        "div",
+                        { staticClass: "ma-auto" },
+                        [
+                          _c("label", [_vm._v("RETRIEVE")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { icon: "" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.mRetrieve()
+                                }
+                              },
+                              model: {
+                                value: _vm.btnRetrieve,
+                                callback: function($$v) {
+                                  _vm.btnRetrieve = $$v
+                                },
+                                expression: "btnRetrieve"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-icon",
+                                { attrs: { large: "", color: "primary" } },
+                                [_vm._v("mdi-rotate-right")]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("label", [_vm._v("SELECT ALL")]),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { icon: "", large: "", color: "primary" },
+                              model: {
+                                value: _vm.btnSelAll,
+                                callback: function($$v) {
+                                  _vm.btnSelAll = $$v
+                                },
+                                expression: "btnSelAll"
+                              }
+                            },
+                            [_c("v-icon", [_vm._v("mdi-check")])],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
                   ],
                   1
                 )
@@ -43105,7 +43148,7 @@ var render = function() {
                                         attrs: {
                                           color: "pink",
                                           content:
-                                            _vm.CategoryData["Department"]
+                                            _vm.CategoryData["cntDepartment"]
                                         }
                                       },
                                       [
@@ -43130,7 +43173,7 @@ var render = function() {
                                       staticStyle: { height: "227.5px" },
                                       on: {
                                         click: function($event) {
-                                          _vm.viewdialog("department"),
+                                          _vm.viewdialog("Department"),
                                             (_vm.dialog = !_vm.dialog)
                                         }
                                       }
@@ -43199,7 +43242,8 @@ var render = function() {
                                       {
                                         attrs: {
                                           color: "pink",
-                                          content: _vm.CategoryData["Section"]
+                                          content:
+                                            _vm.CategoryData["cntSection"]
                                         }
                                       },
                                       [
@@ -43224,7 +43268,7 @@ var render = function() {
                                       staticStyle: { height: "227.5px" },
                                       on: {
                                         click: function($event) {
-                                          _vm.viewdialog("section"),
+                                          _vm.viewdialog("Section"),
                                             (_vm.dialog = !_vm.dialog)
                                         }
                                       }
@@ -43292,7 +43336,8 @@ var render = function() {
                                       {
                                         attrs: {
                                           color: "pink",
-                                          content: _vm.CategoryData["Employee"]
+                                          content:
+                                            _vm.CategoryData["cntEmployee"]
                                         }
                                       },
                                       [
@@ -43317,7 +43362,7 @@ var render = function() {
                                       staticStyle: { height: "227.5px" },
                                       on: {
                                         click: function($event) {
-                                          _vm.viewdialog("employee"),
+                                          _vm.viewdialog("Employee"),
                                             (_vm.dialog = !_vm.dialog)
                                         }
                                       }

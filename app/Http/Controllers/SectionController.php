@@ -37,6 +37,7 @@ class SectionController extends Controller
                 $join->on('sec.department_code' , '=' ,'dep.department_code');
             })
             ->join('employees as emp' , 'sec.updated_by' , '=' , 'emp.employee_code')
+            ->where('sec.deleted_at' , null)
             ->get();
         // return view('section' , compact('company' , 'dept', 'sections' ));
         return   ($items);
