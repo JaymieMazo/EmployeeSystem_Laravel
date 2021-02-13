@@ -336,7 +336,6 @@ computed:{
                               alert(this.category)
                               for(i=0; i  < res.data[this.category].length ;i++){
                                   this.editData(i)   
-                                  
                               }
                             })
 
