@@ -52,72 +52,54 @@
     app 
     width="277px"
     color="teal lighten-4">
+
  <v-list>
-                <v-list-item-group  >
-                <template v-for='(NavItem,key) in NavItems'>
-                          <template v-if="NavItem.subLinks == null">
-                              <v-list-item  :to="NavItem.router" :key="key">
-                                  
-                                    <v-list-item-icon>
-                                        <v-icon>{{ NavItem.icon }}</v-icon>
-                                    </v-list-item-icon>
+      <v-list-item-group  >
+              <template v-for='(NavItem,key) in NavItems'>
+                    <template v-if="NavItem.subLinks == null">
+                        <v-list-item  :to="NavItem.router" :key="key">
+                            
+                              <v-list-item-icon>
+                                  <v-icon>{{ NavItem.icon }}</v-icon>
+                              </v-list-item-icon>
 
-                                    <v-list-item-title>{{ NavItem.title }}</v-list-item-title>
-                              </v-list-item>
-                          </template>    
-
-
-                        <template v-else>
-                            <v-list-group :key="key"  :valu="false" no-action  :prepend-icon="NavItem.icon">
-                              <template v-slot:activator>
-                                <v-list-item-content>
-                                      <v-list-item-title>{{ NavItem.title }}</v-list-item-title>
-                                </v-list-item-content>
-                            </template>
-                                   
-
-              
-                          <v-list-item  
-                                v-for="(subItem , key) in NavItem.subLinks" 
-                                :key="key" 
-                                  :to="subItem.router">
-
-
-                                 <v-list-item-icon>
-                                        <v-icon>{{ subItem.icon }}</v-icon>
-                                  </v-list-item-icon>
-
-                                <v-list-item-title  v-text="subItem.text" >  XAS</v-list-item-title>
-                          </v-list-item>
-
-               
-                                 
-
-
-                              </v-list-group>
-                          
-                          </template>    
-
-
-
-                          <template>
-                          </template>
-                  
-
+                              <v-list-item-title>{{ NavItem.title }}</v-list-item-title>
+                        </v-list-item>
                     </template>
-                </v-list-item-group>
+
+                    <template v-else>
+                                <v-list-group :key="key"  :valu="false" no-action  :prepend-icon="NavItem.icon">
+                                        
+                                        <template v-slot:activator>
+                                              <v-list-item-content>
+                                                    <v-list-item-title>{{ NavItem.title }}</v-list-item-title>
+                                              </v-list-item-content>
+                                        </template>
+
+                                        <v-list-item  
+                                              v-for="(subItem , key) in NavItem.subLinks" 
+                                              :key="key" 
+                                                :to="subItem.router">
+                                              <v-list-item-icon>
+                                                      <v-icon>{{ subItem.icon }}</v-icon>
+                                                </v-list-item-icon>
+
+                                              <v-list-item-title  v-text="subItem.text" >  
+                                              XAS</v-list-item-title>
+                                        </v-list-item>
+                                  </v-list-group>
+                      </template>    
+               </template>
+       </v-list-item-group>
  </v-list>
-
-
 
     <template v-slot:append>
         <div class="pa-2" @click="logout()"><v-btn dark block>Logout</v-btn></div>
       </template>
     </v-navigation-drawer>
   </div>
+
 </template>
-
-
 
 
 <script>
@@ -132,16 +114,15 @@ export default {
           router: "/" 
           },
           { 
-            
             title: "Master maintenance", 
             icon: "mdi-cog",
             subLinks:[
                       {text:"Employees", router:  "/Employee" , icon: "mdi-human-male-female"},
                       {text:"Company", router:  "/Company" , icon: "mdi-domain"},
                       {text:"Department", router: "/Department",  icon: "mdi-account-group"},
-                        {text:"Section", router:  "/Section",  icon: "mdi-bank" },
-                        {text:"Users", router:  "/User" ,  icon: "mdi-account-lock"}, 
-                          {text:"Job Position", router:  "/position" ,  icon: "mdi-seat-outline"}
+                      {text:"Section", router:  "/Section",  icon: "mdi-bank" },
+                      {text:"Users", router:  "/User" ,  icon: "mdi-account-lock"}, 
+                      {text:"Job Position", router:  "/position" ,  icon: "mdi-seat-outline"}
                     ]
           }, 
             { 

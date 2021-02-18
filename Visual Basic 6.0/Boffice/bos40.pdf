@@ -1,0 +1,43 @@
+[PDF]
+Version=1.0
+
+[Package Definition]
+Product=BackOffice
+Version=4.0
+Comment=
+SetupVariations=Automated, Uninstall
+
+[Automated Setup]
+CommandLine=setup.exe /U unattended.ini
+CommandName=Install BackOffice
+UserInputRequired=True
+SynchronousSystemExitRequired=True
+SupportedPlatforms=Windows NT (x86), Windows NT (ALPHA)
+
+[Uninstall Setup]
+CommandLine=
+CommandName=setup.exe /U unattended.ini
+UserInputRequired=True
+SynchronousSystemExitRequired=True
+SupportedPlatforms=Windows NT (x86), Windows NT (ALPHA)
+
+[Setup Package for Inventory]
+InventoryThisPackage=False
+Detection Rule Part 1=file 1
+
+[file 1]
+FILE=setupbo.exe
+COLLECT=FALSE
+;The following can also be filled out as neccessary. Remove the leading quote mark from each line to be used:
+;Checksum=
+;CRC=
+;Date=
+;Size=
+;Time=
+;BYTE=
+;WORD=
+;LONG=
+;Token 1=
+;Token 2=
+;Token 3=
+;Token 4=

@@ -1,7 +1,7 @@
 <template>
 <v-row class="pa-10">
     
-<v-col cols=6>
+<v-col cols=4>
 <v-hover v-slot="{ hover }">
               <v-expand-transition>
                       <v-card  height="300px"  v-show="show">
@@ -33,12 +33,11 @@
                     </v-card>
                 </v-expand-transition>
  </v-hover>
-              <template  >
+              <template   v-if="count !=0" >
                        <v-dialog  v-model="dialog" width="50%"  >
-                     
                               <v-card >
                                 <v-img 
-                                height="200px" width="650px"
+                                height="200px" width="700px"
                                       margin-top="20px"
                                    :src="ImgUrl">
                                   </v-img>
@@ -70,7 +69,7 @@
                                           </v-simple-table>
                                           </v-card-text>
                                        
-                                          <v-card-actions>
+                                  <v-card-actions>
 
                                       <div class="ma-auto">
                                           <span class="ret">RETRIEVE</span>
@@ -96,7 +95,7 @@
   </v-col>
 
   <!-- department -->
-<v-col cols=6>
+<v-col cols=4>
               <v-hover v-slot="{hover}">
                       <v-expand-transition>
                             <v-card  height="300px"  v-show="show">
@@ -120,18 +119,19 @@
                                         grey lighten-1
                                         v-card--reveal 
                                         display-3 
-                                        white--text"
+                                        white--text center"
                                         style="height: 227.5px;"
                                         @click="viewdialog('Department'),  dialog=!dialog"
+                                  
                                       >
-                                            Department
+                                        Dept
                                       </div>
                               </v-expand-transition>
                           </v-card>
                           </v-expand-transition>
               </v-hover>
   </v-col>
- <v-col cols=6>
+ <v-col cols=4>
 <v-hover v-slot="{ hover }">
 <v-expand-transition>
   <v-card height="300px"   v-show="show"  > 
@@ -140,7 +140,6 @@
           <v-badge
                 color="pink"
                  :content="CategoryData['cntSection']"
-
               >
                   Sections
               </v-badge>
@@ -184,7 +183,6 @@
               </v-badge>
       </div>
       </v-card-title>
-
       <v-expand-transition>
           <div
             v-if="hover"
@@ -207,6 +205,78 @@
 </v-col>
 
 
+<v-col>
+<v-hover v-slot="{ hover }" >
+<v-expand-transition>
+      <v-card  height="300px"  v-show="show">
+      <v-card-title  class="cyan lighten-3 ">
+
+      <div class="pa-1">
+          <v-badge
+                color="pink"
+                 :content="CategoryData['cntEmployee']"
+              >
+                  Positions
+              </v-badge>
+      </div>
+      </v-card-title>
+      <v-expand-transition>
+          <div
+            v-if="hover"
+            class="d-flex 
+            transition-fast-in-fast-out
+             grey lighten-1
+             v-card--reveal 
+             display-3 
+             white--text"
+            style="height: 227.5px;"
+               @click="viewdialog('Employee'),  dialog=!dialog"
+          >
+          Positions
+          </div>
+        </v-expand-transition>
+    </v-card>
+    </v-expand-transition>
+    </v-hover>
+
+</v-col>
+
+<v-col>
+<v-hover v-slot="{ hover }" >
+<v-expand-transition>
+      <v-card  height="300px"  v-show="show">
+      <v-card-title  class="cyan lighten-3 ">
+
+      <div class="pa-1">
+          <v-badge
+                color="pink"
+                 :content="CategoryData['cntEmployee']"
+              >
+                  Users
+              </v-badge>
+      </div>
+      </v-card-title>
+      <v-expand-transition>
+          <div
+            v-if="hover"
+            class="d-flex 
+            transition-fast-in-fast-out
+             grey lighten-1
+             v-card--reveal 
+             display-3 
+             white--text"
+            style="height: 227.5px;"
+               @click="viewdialog('Employee'),  dialog=!dialog"
+          >
+          Users
+          </div>
+        </v-expand-transition>
+    </v-card>
+    </v-expand-transition>
+    </v-hover>
+
+</v-col>
+
   </v-row>
 
   
@@ -215,7 +285,6 @@
 <script>
 export default {
  
-
   data () {
           return {
                   show:false,
@@ -228,36 +297,26 @@ export default {
                   btnSelAll:false,    
                   retdata:{},
                   deletedData:[],
-
-
+                  count:0,
           }
   },
 
 
-
-
-
-
 created(){
                 this.onLoaddialog()
-
 },
-
-
 
 computed:{     
           deletedData1(){
                         return this.CategoryData[this.category]
           }, 
 
-      test(){
 
-        return this.deletedData.filter(
-          rec=>{
-
-
-            return this.deletedData.retrieveFlg==false
-          }
+          test(){
+            return this.deletedData.filter(
+              rec=>{
+                return this.deletedData.retrieveFlg==false
+              }
         )
       }
 
@@ -272,32 +331,41 @@ computed:{
     onLoaddialog(){
       axios.get('api/junks').then(res=>{
                   this.CategoryData =res.data
-                  // console.log(this.CategoryData )
-                  // adding deleteflg as column
-                       
                        var i=0
                         for (i = 0; i < this.CategoryData.length; i++) {
                           Vue.set(this.CategoryData[i], 'deleteflg' , false)
                           }
               })
-
     },
 
-
-
+ 
         viewdialog(category){
-
-          
-          this.category=category
-          this.btnSelAll=false
-
-          var i=0
-
-            this.deletedData=this.deletedData1
-            for(i = 0 ; i < this.deletedData1.length; i++){
-            this.editData(i , false)
+            this.category=category
+            if(this.category=="Company" ) {
+                  this.count=  this.CategoryData["cntCompany"]
+           }else if(this.category=="Department" ){
+                this.count=this.CategoryData["cntDepartment"]
+           }else if(this.category=="Section" ){
+                  this.count=   this.CategoryData["cntSection"]
+           }else if (this.category=="Employee") {
+                    this.count=this.CategoryData["cntEmployee"] 
             }
 
+            if(this.count == 0){
+                 alert('No data to show!!!')
+            }
+           
+
+                  this.btnSelAll=false
+                  var i=0
+                  this.deletedData=this.deletedData1
+                    for(i = 0 ; i < this.deletedData1.length; i++){
+                  this.editData(i , false)
+                  }
+
+              
+
+        
         
         },
 
@@ -360,13 +428,10 @@ computed:{
       }, 
 
       mSelectAll(){   
-
           var i=0
           for(i=0; i < this.deletedData.length; i++){
                   this.editData(i , true )
           }
-       
-
       }
   }, 
 

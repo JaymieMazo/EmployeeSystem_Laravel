@@ -15,8 +15,6 @@
                         <v-spacer></v-spacer>
                         <v-text-field text v-model="email" label="Username" outlined dense 
                         prepend-inner-icon="mdi-account" clearable required :counter="10" >
-                      
-                     
                         </v-text-field>
 
                         <v-text-field    :type="show1 ? 'text' : 'password'" 

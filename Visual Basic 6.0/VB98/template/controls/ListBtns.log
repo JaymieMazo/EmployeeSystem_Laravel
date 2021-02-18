@@ -1,0 +1,5 @@
+Line 13: Property DragIcon in lstItems had an invalid file reference.
+Line 25: Property Picture in cmdUp had an invalid file reference.
+Line 37: Property Picture in cmdDown had an invalid file reference.
+Line 49: Property Picture in cmdDelete had an invalid file reference.
+Line 60: Property Picture in cmdAdd had an invalid file reference.

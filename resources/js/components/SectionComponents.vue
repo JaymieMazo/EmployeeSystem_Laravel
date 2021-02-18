@@ -151,8 +151,6 @@ export default {
 				        } 
 				}, 
 
-
-
 				created(){
 				        axios.get('api/section' ).then(res=>{
 				              this.companies= res.data.Company
@@ -185,10 +183,10 @@ export default {
             })
           }
 
-
-        
         }
       }, 
+
+
 
 			  methods:{
 			      save(){
@@ -208,7 +206,7 @@ export default {
 					                  }else if(res.data == 'exist'){
 					                      alert('Section already exist')
 					                  }else{
-                              alert('refresh')
+                              // alert('refresh')
 					                      this.sections=res.data.Section
 					                  }
                       })

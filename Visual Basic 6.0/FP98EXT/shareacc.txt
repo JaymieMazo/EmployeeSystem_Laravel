@@ -1,0 +1,41 @@
+You can also find these instructions in the file FrontPg\enu\shareacc.txt on the FrontPage 98 CD.
+
+HOW TO RESTRICT ACCESS TO YOUR FRONTPAGE WEBS
+
+Web server running on Windows 95
+================================
+
+The Microsoft Personal Web Server for Windows 95 can operate either with no security or
+with User Level access control if your computer is part of a Microsoft Windows Networking
+Domain.  If your computer is not a member of a Domain, which usually is the case for
+standalone computers not connected to a network or LAN, then your web server will operate
+with no security.
+
+If your computer is a member of a Microsoft Windows Networking Domain, you can enable
+access control for your web server by enabling User Level access control.  Follow these
+steps to set your computer to User Level access control:
+a) Uninstall FrontPage 98 using the Add/Remove Programs icon in the Control Panel. Uninstalling FrontPage does not remove the content you have created in your webs, it only removes the FrontPage 98 program files.
+b) Go to the Control Panel and open the Network icon.
+c) On the Access Control tab, select the User Level option and click OK.
+d) After the computer has restarted, re-install FrontPage 98.  After reinstalling, use the Permissions command on the Tools menu in the FrontPage Explorer to restrict access to your FrontPage web.
+
+Web server running on Windows NT
+================================
+
+The FrontPage Server Extensions on Microsoft Internet Information Server for Windows NT Server or Microsoft Peer Web Services for Microsoft NT Workstation rely on the NTFS filesystem to restrict access control to your FrontPage webs. If you use the FAT filesystem then anybody will be able to browse, author and administrate your FrontPage webs.  The FrontPage Server Extensions and the web content storage must be installed on a NTFS filesystem partition to restrict access.
+
+There are two ways to make an NTFS filesystem partition on your computer if an NTFS filesystem partition does not already exist:
+a) Create a new NTFS filesystem partition.  This requires that the computer have free, unpartitioned disk space, or that you delete or resize an existing FAT partition.  This process is complex and therefore is not recommended.
+b) Convert your existing FAT filesystem partition to the NTFS filesystem.  The conversion process occurs in-place and does not require deletion of data, however it is not a reversible process.  Once a filesystem is converted to NTFS it cannot be directly converted back to the FAT filesystem.  To enable security on your FrontPage webs, conversion of FAT to NTFS is the recommended process and is documented below.
+
+WARNING: converting a FAT filesystem partition to the NTFS filesystem on a dual-boot computer that runs more than one operating system will make the partition unreadable to MSDOS, Microsoft Windows 3.x, or Microsoft Windows 95.  If the operating systems other than Windows NT are stored on the partition to be converted to the NTFS filesystem then those operating systems will no longer be usable.  If your computer is a dual-boot machine and you wish to continue to run operating systems other than Windows NT then you must create a second disk partition for the NTFS filesystem to store the web content, and continue to use a FAT filesystem partition to store the other operating systems.  Do not follow the instructions below if wish to create two partitions, rather you must use the Windows NT Disk Administrator application to add an additional NTFS partition to the hard drive.
+
+To convert a FAT filesystem partition to the NTFS filesystem and thus restrict access to your webs:
+
+a) Uninstall FrontPage 98 using the Add/Remove Programs icon in the Control Panel.  Uninstalling FrontPage does not remove the content you have created in your webs, it only removes the FrontPage 98 program files.
+
+b) Open a Command Prompt window.  Run the command "convert C: /fs:ntfs", where C: is the drive letter of the drive containing your web server content root (usually C:).  The conversion process may require that the computer be shutdown and rebooted.
+
+c) After conversion is complete, restart the web server using the Internet Service Manager application.  If the machine was rebooted as a part of the filesystem conversion process then the web server will be automatically restarted.
+
+d) Re-install FrontPage 98.

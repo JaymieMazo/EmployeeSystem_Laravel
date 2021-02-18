@@ -1,0 +1,258 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+<html>
+<!-- REM (C) Copyright 1996-1997 Microsoft Corporation.  All Rights Reserved. 
+     THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+     ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+     THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+     PARTICULAR PURPOSE. -->
+
+<head><title>Connection Manager Administration Kit Readme File</title>
+
+<script language="JavaScript">
+	TempString = navigator.appVersion
+	if (navigator.appName == "Microsoft Internet Explorer"){	
+// Check to see if browser is Microsoft
+		if (TempString.indexOf ("4.") >= 0){
+// Check to see if it is IE 4
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+		}
+		else {
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+		}
+	}
+	else if (navigator.appName == "Netscape") {						
+// Check to see if browser is Netscape
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+	}
+	else
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+</script> 
+
+<meta name="DESCRIPTION" content="Supplements information found in the main documentation">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000"><font face="Verdana,Arial,Helvetica">	
+
+<a name ="top"></a>
+<a name="E10E28"><h1>Connection Manager Administration Kit Readme</h1></a>
+
+<ul>
+<li><a href="#E10E34" name="LOCE10E34" >Known Issues with Connection Manager Administration Kit</a></li>
+<li><a href="#E10E33" name="LOCE10E33" >Known Issues with Connection Manager</a></li>
+<li><a href="#E10E32" name="LOCE10E32" >For More Information</a></li>
+</ul>
+
+<p>Before installing this product, please review this entire document and read the <em>Connection Manager Administration Kit Guide</em>. The document contains critical information for ensuring proper installation and use of the product.</p>
+
+<p><strong><span style="color: #FF0000"><font color="#000FF">Important</font></span></strong>&nbsp;&nbsp;&nbsp;This readme contains important, late-breaking information about this product.</p>
+
+<a name="E10E34"><big>Known Issues with Connection Manager Administration Kit</big><!-- </p> --><br></a>
+
+<ul>
+<li>Windows 3.1x features for Connection Manager are not supported for this release.
+A version of Connection Manager for Windows 3.1x should be available in a future release.</li>
+
+<li>Service profiles built with a version of the wizard from beta&nbsp;2
+or earlier are not compatible with this version of the wizard.  You cannot edit
+such profiles with the wizard, or build new profiles based on such profiles.</li>
+
+<li>Long file names are not supported.</li>
+
+<li>The service profile cannot install Connection Manager in a subdirectory whose path name is longer than 256 characters.</li>
+
+<li>If you need to have a program run immediately after your users run their service profile executable
+(for example, if you have a readme file you want to automatically display, or
+if you have included a program in the service profile that copies their dial-up networking settings
+to their .cmp file so that their connection setting will be preserved), this functionality is now available.
+
+<p>To do this, create the service profile, and then add the name of the program you want to run, plus any command line switches or options,
+to the <strong>[RunPostSetupCommandsSection]</strong> section of the .inf file associated with the service profile (If you want this change 
+to apply to all other service profiles you create as well, make the same change to the template.inf file in \Program Files\CMAK\cm32\enu).</p>
+
+<p>For example, if the program is Myprogram.exe, then the [RunPostSetupCommandsSection] section would appear as follows:</p>
+<p>
+[RunPostSetupCommandsSection]
+<br>Myprogram.exe /<i>options?</i> /<i>switches</i>
+</p>
+
+</li>
+
+<li>When building PPTP-enabled or browser-agnostic profiles on a computer with 32MB RAM or less, the wizard may become extremely slow 
+or even appear to stop.  To gain better performance, try building the profile on a machine with greater than 32MB RAM.</li>
+
+<li>When creating a service profile by using Connection Manager Administration
+Kit, do not use characters typed in a double-byte character set (DBCS).
+To type characters on a DBCS version of Windows 95 or Windows NT,
+use an Input Method Editor (IME) set up to produce single-byte
+character set (SBCS) numbers.
+Examples of DBCS versions include, but are not limited to,
+Japanese and Hangeul.</li>
+
+<li>At this time, Microsoft Dial-Up Networking 1.2 (and therefore PPTP functionality for Windows 95) is only available in English. 
+Service profiles in other languages cannot include the Microsoft Dial-Up Networking 1.2 upgrade.</li>
+</ul>
+
+<a name="E10E33"><p class="bigfix">&nbsp;</p>
+<big>Known Issues with Connection Manager</big><!-- </p> --><br></a>
+
+<ul>
+<li>The IdleThreshold and IdleTimeout parameters are not supported by Connection Manager on Windows NT. Therefore, the "Disconnect if idle for more than" setting in Connection Manager may not work properly.</li>
+
+<li> Connection Manager requires certain files that are supplied by Internet Explorer 3.0 or later. If you remove Internet Explorer, Connection Manager will no longer work.</li>
+
+<li>Do not install two copies of Microsoft Connection Manager in
+two different folders on the same computer. This will cause the 
+original service profiles to become disassociated with Connection
+Manager. To prevent this, install both versions into the same folder.
+</li>
+
+<li>On Windows 95, if you try to establish a Dial-Up Networking
+connection with your ISP, you might see an error message in the
+Microsoft Connection Manager dialog box saying that you need to
+type a phone number. If this happens, click Settings. When the
+Location Information dialog box appears, follow the instructions,
+and then click OK.</li>
+
+<li>On Windows NT, if you try to establish more than one connection,
+you might see the message, "The modem is not configured properly..." 
+This sometimes happens if you try to dial too quickly, or if you start 
+Microsoft Connection Manager when a connection has already been
+established using Dial-Up Networking. Disregard the message.
+Use one connection at a time.</li>
+
+<li>On Windows NT, you might have problems with Remote Access Services (RAS), which is automatically installed by the Connection Manager 
+service profile. Make sure RAS is configured to use a manual startup type,
+and that you have privileges to start RAS. 
+To do this, 
+
+<ol> 
+ <li>Click Start, point to Settings, then click Control Panel, 
+  and then double-click Services.</li> 
+  <li>In the Services list, double-click Remote Access Service. </li>
+  <li>In the Service dialog box, click Manual, and then click OK.</li>
+</ol>
+</li>
+
+<li>On Windows NT, if you change the "Disconnect if idle for more
+than" setting, the change you made will not take effect until
+you quit Microsoft Connection Manager and then restart it.</li>
+
+<li>If you type or edit the phone number in the Dialing tab of
+the Connection Settings dialog box, make sure you use the 
+proper form for the phone number. If you do not, the 
+Connection Manager will not use the Dialing Properties 
+that you have set up when dialing the telephone number.
+<br>
+<br>The proper form is as follows:<br>
++[country code] (area code) phone number
+<br>
+For example, if your country code is 1, your area code is 800, 
+and your phone number is 555-1212, you should type the phone
+number as follows, making sure to include the '+' sign, spaces, and 
+parentheses:
+<br>
++1 (800) 5551212
+<br>
+If you do not use this form, make sure you enter the 
+number exactly as it is to be dialed.
+</li>
+
+<li>If you are using Microsoft Dial-Up Networking 1.2, and the 
+following message appears, disregard it:
+<br>
+  This DHCP client was unable to obtain an IP network 
+  address from a DHCP server. Do you want to see future 
+  DHCP messages?
+</li>
+
+<li>Microsoft Connection Manager does not work on Windows&nbsp;NT 4.0 
+with some internal ISDN network adapters, including the 
+Diamond Supra NetCommander ISDN Modem.</li>
+
+<li>Connection Manager supports using single-channel ISDN. You can 
+manually configure Connection Manager to to use dual-channel ISDN.
+<br>
+<br>If you are running Windows 95, use the following steps to set up
+dual-channel ISDN:
+
+<ol>  
+  <li> Click Start, then point to Programs, then point to Accessories, 
+  and then click Dial-Up Networking.</li>
+  <li> Right-click the connection icon for your ISP and then click 
+  Properties.</li>
+  <li> Click the Multilink tab.</li>
+  <li> Click Use additional devices, and then click Add.</li>
+  <li> In the Edit Extra Device dialog box, select the device for 
+  your extra ISDN channel, and then type the phone number for 
+  that device.</li>
+</ol>
+
+<br>If you want to use dual-channel for your backup connection icon, 
+repeat the above steps for your backup connection icon.
+<br>
+<br>Once you have used this technique to set up a dual-channel connection
+icon for use with Connection Manager, if you change either your primary 
+or backup phone number, you will also have to edit the multilink phone 
+number that you entered in step 5. 
+<br>
+<br>If you are running Windows NT, see your Windows NT documentation for 
+information on setting up dual-channel ISDN connections.
+</li>
+
+<li>Connection Manager will automatically install the TCP-IP protocol, 
+but no other protocols. If you use a connection icon that requires 
+a protocol other than TCP-IP, make sure you install it before attempting 
+to connect to your ISP. To do this:
+
+<ol>
+  <li>Click Start, point to Settings, click Control Panel, 
+  and then double-click Network.</li> 
+  <li>Click the Services tab, click Remote Access Service, and then 
+  click Properties.</li>
+  <li>Click the modem or VPN adapter, and then click Network.</li>
+  <li>In the Dial out Protocol list, click the protocol that your 
+  service profile uses.</li>
+</ol>
+</li>
+
+<li>If you are running Windows NT and using Connection Manager to 
+establish a Dial-up Networking connection, Connection Manager does 
+not support popping up a terminal window after dialing. (Bringing up 
+a terminal window before dialing, however, is supported.) If your ISP requires 
+that your connection causes a terminal window to pop up after you connect, 
+contact your ISP and ask for a dial-up script that will bring up the terminal 
+window.</li>
+
+<li> Windows 95 users may see problems in Connection Manager displays,
+resulting from the installation of a service profile that uses a
+different language than that configured for use by the operating system.</li>
+
+<li>Numbers typed in a double-byte character set (DBCS) are not accepted.
+To type numbers on a DBCS version of Windows&nbsp;95 or Windows&nbsp;NT,
+use an Input Method Editor (IME) set up to produce single-byte
+character set (SBCS) numbers.
+Examples of DBCS versions include, but are not limited to,
+Japanese and Hangeul.</li>
+</ul>
+
+<a name="E10E32"><p><strong>For More Information</strong></p></a>
+
+<p>For help in using the Connection Manager Administration Kit, read the <em>Microsoft Connection Manager Administration Kit </em>documentation. 
+
+<p><a href="#top" >Return to top</a></p>
+
+<hr>
+
+<h1><a name="CopyrightInformation">Copyright Information</a></h1>
+
+<p>&copy; 1997 Microsoft Corporation</p>
+<p>These materials are provided &#147;as-is,&#148; for informational purposes only.</p>
+<p>Neither Microsoft nor its suppliers makes any warranty, express or implied with respect to the content of these materials or the accuracy of any information contained herein, including, without limitation, the implied warranties of merchantability or fitness for a particular purpose. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you.</p>
+<p>Neither Microsoft nor its suppliers shall have any liability for any damages whatsoever including consequential, incidental, direct, indirect, special, and lost profits. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you. In any event, Microsoft&#146;s and its suppliers&#146; entire liability in any manner arising out of these materials, whether by tort, contract, or otherwise shall not exceed the suggested retail price of these materials.</p>
+
+<hr class="iis" size="1">
+<p align="center"><em><a href="/iishelp/common/colegal.htm">&copy; 1997 by Microsoft Corporation. All rights reserved.</a></em></p>
+
+</font>
+</body>
+</html>

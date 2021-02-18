@@ -1,0 +1,154 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+<html><head><title>MMC Release Notes</title>
+
+<script language="JavaScript">
+	TempString = navigator.appVersion
+	if (navigator.appName == "Microsoft Internet Explorer"){	
+// Check to see if browser is Microsoft
+		if (TempString.indexOf ("4.") >= 0){
+// Check to see if it is IE 4
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+		}
+		else {
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+		}
+	}
+	else if (navigator.appName == "Netscape") {						
+// Check to see if browser is Netscape
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+	}
+	else
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+</script>
+
+<meta name="DESCRIPTION" content="Release Notes."></head>
+
+<body bgcolor="#FFFFFF" text="#000000"><font face="Verdana,Arial,Helvetica">
+
+<h1>Microsoft Management Console Version&nbsp;1.0<br> Release Notes</h1>
+
+<p>
+<a href="#Welcome">Welcome to Microsoft Management Console</a><br>
+<a href="#Running">Running MMC</a><br>
+<a href="#ProductDocumentation">Product Documentation</a><br>
+<a href="#OtherKnownProblemsandLimitations">Other Known Problems and Limitations</a><br>
+<!-- <a href="#Troubleshooting">Troubleshooting</a><br> -->
+<a href="#NewsAndFeedback">Getting Product News and Providing Feedback</a><br>
+<a href="#TechnicalSupportInformation">Your Guide to Microsoft Technical Support</a><br>
+<a href="#CopyrightInformation">Copyright Information</a><br>
+</p>
+
+<hr>
+
+<h1><a name="Welcome">Welcome to Microsoft Management Console Version&nbsp;1.0</a></h1>
+
+<p>Welcome to the Internet Information Server 4.0 release of Microsoft Management Console (MMC).  MMC integrates in a single console all the tools required to perform specific administrative tasks.  To create a new console, a system administrator adds administrative tools as snap-ins in MMC. These snap-ins can be the standard administrative tools for Windows, which are all being converted to snap-ins. They can also be administrative tools that have been configured as snap-ins by Independent Software Vendors.  By adding snap-ins to a console, an administrator can assemble all the tools and information required to assess and configure a system component.  Even links to Web-based tools or to Web pages that provide information or updates to system components can be added to a console. </p>
+
+<p>When a console is complete, the administrator can save it in an .msc (Management Saved Console) file. By default, this makes it available in the <strong>My Administrative Tools</strong> group, found in <strong>Programs</strong> on the <strong>Start</strong> menu. The administrator can then deliver the console to others who have been delegated to perform administrative tasks. The console can be delivered by e-mail, placed in a shared folder on the network, or assigned with system policy settings. When the console is opened, it appears in exactly the same configuration in which it was saved.</p>
+
+<hr>
+
+<h1><a name="Running">Running MMC</a></h1>
+
+<p><strong><span style="color: #0000FF"><font color="#0000FF">Important</font></span></strong>&nbsp;&nbsp;&nbsp;To open the standard Microsoft administrative consoles, on the <strong>Start</strong> menu, point to <strong>Programs</strong>, point to <strong>Administrative Tools</strong>, and then click the tool you want to open. You can also click an .msc file in Windows Explorer to open it.</p>
+
+<p>To create a new console, on the <strong>Start</strong> menu, click <strong>Run</strong> type <strong>mmc</strong>, and then click <strong>OK</strong>.</p>
+
+<hr>
+
+<h1><a name="ProductDocumentation">Product Documentation</a></h1>
+
+<p>All documentation for the product is available online. When MMC is running, you can access the Help topics for MMC by clicking <strong>Help on MMC</strong> on the <strong>Help</strong> menu.  </p>
+
+<p>To view help for a snap-in on an MMC console, click the snap-in, and then on the <strong>Help</strong> menu, click <strong>Help on Snap-in</strong>.</p> If <strong>Help on Snap-in</strong> is unavailable, then there is no help for the selected snap-in.</p>
+
+<hr>
+
+<h1><a name="OtherKnownProblemsandLimitations">Other Known Problems and Limitations</a></h1>
+
+<p>The following list contains problems and limitations that are known to exist in this release:</p>
+
+<p>
+<a href="#help">Help may not be completely implemented</a><br>
+<a href="#readonly">Read-Only Mode Unavailable</a><br>
+</p>
+
+
+
+<p><a name="help"><strong>Help is not completely implemented</strong></a></p>
+
+<ul>
+
+<li>Context help is unavailable for the MMC dialog boxes in this release.</li>
+<li>Help is implemented for only a few of the standard administrative consoles included with this release of MMC.</li>
+</ul>
+
+
+<p><a name="readonly"><strong>Read-Only Mode Unavailable</strong></a></p>
+
+<ul>
+
+<li>Read-only mode is unavailable in this release. Future versions of MMC will provide a read-only mode to ensure that console files shipped with applications are not changed by users.</li>
+</ul>
+
+<hr>
+
+<h1><a name="NewsAndFeedback">Getting Product News and Providing Feedback</a></h1>
+
+<p>To view topical news about MMC,  on the MMC <strong>Help</strong> menu, point to <strong>Microsoft on the Web</strong> and then click <strong>Product News</strong>. This takes you to the Web page for MMC on the Microsoft Web site. An overview of MMC as well as FAQs and information about writing snap-ins is available there.</p>
+
+<p>To provide feedback on MMS, point to <strong>Microsoft on the Web</strong>, and then click <strong>Send Feedback</strong>. This displays a Web page that tells how to provide feedback for the product.</p>
+
+<hr>
+
+<h1><a name="TechnicalSupportInformation">Your Guide to Microsoft Technical Support</a></h1>
+
+<p>If you have a technical question about Microsoft® Internet Information Server, use this online documentation or consult Help by clicking the <strong>Help</strong> button during a procedure. If you still have a question, Microsoft offers technical support and services ranging from self-help tools to direct assistance with a Microsoft Technical Support Engineer. Note: The services and prices listed here are available in the United States and Canada only (see <em><strong>Technical Support Worldwide</strong></em> below).</p>
+
+<h2>Self-Help Tools to Find Answers Yourself</h2>
+	
+<p><strong>Microsoft Technical Support Online:</strong> This innovative site uses the cutting-edge technology of Microsoft to help you access the most relevant technical information and resources to answer your support questions.  Use the Troubleshooting Wizards to easily diagnose and answer technical questions.  Or select technical articles, programming aids, or commonly asked questions from the Microsoft Knowledge Base of over 75,000 articles.  Visit <a href="http://www.microsoft.com/support/"  target="_top">http://www.microsoft.com/support/</a> today and see how easy it is to find the answers you need.</p>
+
+<h2>Direct Assistance with a Microsoft Technical Support Engineer</h2>
+
+<p><strong>Pay-Per-Incident Support:</strong> If you still need answers to your technical questions, you can purchase Pay-Per-Incident Support.  In the U.S. and Canada, for a fee of $195US per incident, please call (800) 936-5900, 24 hours a day, seven days a week, including holidays.</p>
+
+<p><em>Note:  Support fees for the (800)# calls will be billed to your VISA, MasterCard, or American Express credit card.</em></p>
+  
+<p><strong>Priority Annual Support:</strong> If you anticipate a high volume of support incidents, or need priority access to Microsoft Technical Support Engineers, you can purchase a Priority Annual Comprehensive Account.  In the U.S. and Canada, for more information or to purchase an annual account at a cost of $1,695US per 10 incidents, call (800) 936-3500, 24 hours a day, 7 days a week, including holidays.  To submit an incident against an existing account, call (800) 936-4900, 24 hours a day, 7 days a week, including holidays.</p>
+  
+<p><strong>Submitting questions via the Internet</strong>: In the U.S. and Canada, you can also submit your Pay-Per-Incident or Priority Annual support questions via the Internet with Web Response.  For more details, go to Microsoft Technical Support Online at <a href="http://www.microsoft.com/support/"  target="_top">http://www.microsoft.com/support/</a>.</p>
+
+<p><strong>Priority Plus:</strong> Microsoft Technical Support also offers special accounts for medium-sized businesses that require priority incident resolution, including business-critical support and access to targeted information to assist information-technology and Help desk professionals in support planning for smoother product deployment.  For more information, in the U.S. and Canada, please call (800) 936-3500, 24 hours a day, seven days a week, including holidays.</p>
+
+<p><strong>Priority Consult Line:</strong> Receive hourly consulting for support questions that fall outside of the traditional technical support realm. These include designing or planning for deployment, software development, code review, and implementation planning. The Consult Line covers all Microsoft products, including those Microsoft products used for developing Internet and Intranet solutions. For more information or to purchase hourly consulting services at $195US per hour (minimum one hour), please call (800) 936-5200, Monday through Friday, excluding holidays, 6:00 A.M. to 6:00 P.M. Pacific time.</p>
+	
+<h2>Additional Support Options</h2>
+
+<p><strong>Professional Programs and Services:</strong> Microsoft Technical Support also offers professional support programs and services for large businesses that require a direct relationship with Microsoft.  For more information, see the Technical Support section of the Help file, or visit Microsoft Technical Support Online at <a href="http://www.microsoft.com/support/"  target="_top">http://www.microsoft.com/support/</a>.</p>
+
+<p><strong>Text Telephone:</strong> Microsoft text telephone (TTY/TTD) services are available for the deaf or hard-of-hearing. In the United States, using a TTY/TTD modem, dial (425) 635-4948. In Canada, using a TTY/TTD modem, dial (905) 568-9641.</p>
+
+<p><strong>Technical Support Worldwide:</strong> Support services and prices may vary outside the United States and Canada.  For information on support available outside the U.S. and Canada, contact the local Microsoft subsidiary in your area.  For a list of worldwide Microsoft subsidiaries, see the Technical Support section of the Help file, or visit Microsoft Technical Support Online at <a href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</a>.</p>
+
+<p><em>Note: The services and prices listed here are available in the United States and Canada only.  Support services may vary outside the U.S. and Canada.  For more information on support in other locations, contact your local Microsoft subsidiary.</p>
+  
+<p>Microsoft's support services are subject to Microsoft's then-current prices, terms, and conditions, which are subject to change without notice.
+</em></p>
+ 
+<hr>
+
+<h1><a name="CopyrightInformation">Copyright Information</a></h1>
+
+<p>&copy; 1997 Microsoft Corporation</p>
+<p>These materials are provided &#147;as-is,&#148; for informational purposes only.</p>
+<p>Neither Microsoft nor its suppliers makes any warranty, express or implied with respect to the content of these materials or the accuracy of any information contained herein, including, without limitation, the implied warranties of merchantability or fitness for a particular purpose. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you.</p>
+
+<p>Neither Microsoft nor its suppliers shall have any liability for any damages whatsoever including consequential, incidental, direct, indirect, special, and lost profits. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you. In any event, Microsoft&#146;s and its suppliers&#146; entire liability in any manner arising out of these materials, whether by tort, contract, or otherwise shall not exceed the suggested retail price of these materials.</p>
+
+<hr class="iis" size="1">
+<p align="center"><em><a href="/iishelp/common/colegal.htm">&copy; 1997 by Microsoft Corporation. All rights reserved.</a></em></p>
+
+</font>
+</body>
+</html>

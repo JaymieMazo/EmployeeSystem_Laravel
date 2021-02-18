@@ -147,6 +147,7 @@ export default {
         
       },
 
+
      edit(company_code , companyname){
               this.action='UPDATE'
               this.isCancelShow=true

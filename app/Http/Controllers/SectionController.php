@@ -14,10 +14,9 @@ class SectionController extends Controller
     public function get_data(){
     $items=[];
       
-    $items["Company"]=Company::all();
- 
+    $items["Company"]=Company::where('deleted_at' , null)->get();
 
-    $items["Department"]=Department::all();
+    $items["Department"]=Department::where('deleted_at' , null)->get();
 
     $items["Section"]=Section::from('sections as sec')
             ->select(
@@ -37,6 +36,8 @@ class SectionController extends Controller
                 $join->on('sec.department_code' , '=' ,'dep.department_code');
             })
             ->join('employees as emp' , 'sec.updated_by' , '=' , 'emp.employee_code')
+            ->where('com.deleted_at' , null)
+            ->where('dep.deleted_at' , null)
             ->where('sec.deleted_at' , null)
             ->get();
         // return view('section' , compact('company' , 'dept', 'sections' ));

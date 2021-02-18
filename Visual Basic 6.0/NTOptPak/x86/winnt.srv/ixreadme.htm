@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html><head><title>Microsoft Index Server: Release Notes</title>
+
+<SCRIPT LANGUAGE="JavaScript">
+	TempString = navigator.appVersion
+	if (navigator.appName == "Microsoft Internet Explorer"){	
+// Check to see if browser is Microsoft
+		if (TempString.indexOf ("4.") >= 0){
+// Check to see if it is IE 4
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+		}
+		else {
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+		}
+	}
+	else if (navigator.appName == "Netscape") {						
+// Check to see if browser is Netscape
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+	}
+	else
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+</script> 
+
+<META NAME="DESCRIPTION" CONTENT="Supplements information found in the main documentation"></head>
+
+<body bgcolor="#FFFFFF" text="#000000"><font face="Verdana,Arial,Helvetica">	
+
+
+<h1><a name="ReleaseNotes">Microsoft Index Server Release Notes</a></h1>
+
+<p>Thank you for installing Microsoft&#174; Index Server version 2.0 for Microsoft&#174; Internet Information Server (IIS) version 4.0 running on Microsoft&#174; Windows&nbsp;NT&#174; Server. This topic supplements information contained in the online documentation.</p>
+
+<p>This page contains:</p>
+
+<ul>
+<li><a href="#VisittheIndexServerHomePage">Visit the Index Server Home Page</a></li>
+<li><a href="#ChangestotheDocumentation">Changes to the Documentation</a></li>
+<li><a href="#TechSupport">Your Guide to Technical Support</a></li>
+</ul>
+
+<hr>
+
+<h2><a name="VisittheIndexServerHomePage">Visit the Index Server Home Page</a></h2>
+
+<p>For more information about Index Server and related features, see the Index Server home page:</p>
+<p><a href="http://www.microsoft.com/ntserver/search/" target="_top">http://www.microsoft.com/ntserver/search</a></p>
+
+<hr>
+
+<h2><a name="ChangestotheDocumentation">Changes to the Documentation</a></h2>
+
+<p>This section updates the Index Server documentation for the following topics:</p>
+
+<ul>
+<li><a href="#IndexNewWebSite">Indexing a Newly Created Web Site</a></li>
+<li><a href="#WebhitsOutOfProcess">Running Webhits Out of the IIS Process</a></li>
+</ul>
+
+<h3><a name="IndexNewWebSite">Indexing a Newly Created Web Site</a></h3>
+
+<p>When you create a new Web site through Internet Information Server (IIS), the site is not indexed by default, and therefore you cannot search documents on that site with Index Server.</p>
+
+<big>To index a new Web site</big><!--</p>--><br>
+
+<ol>
+<li>In left pane of Microsoft Management Console (MMC), right-click the newly created Web site.</li>
+<li>Click <strong>Properties</strong> on the menu.</li>
+<li>On the <strong>Home Directory</strong> property sheet, select <strong>Index this directory</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+
+<p>Next, you must add a catalog for the new site. To learn how to add a catalog, see <a href="/iishelp/ix/htm/ixadmccc.htm#CreatingCatalogs">Creating Catalogs</a> in the main documentation.</p>
+
+
+<h3><a name="WebhitsOutOfProcess">Running Webhits Out of the IIS Process</a></h3>
+
+<p>The Index Server sample query forms configure the Webhits ISAPI application to run out of the IIS process, because ISAPI applications are generally configured to run out of process when they are untrusted. It's better to run untrusted applications out of process so that IIS is not affected if the application crashes. Webhits is configured in the Index Server samples to run out of process because it uses text filters (IFilter) to display query hits in files. Because text filters come from many companies, it's hard to guarantee they are all robust.</p>
+
+<p>The filters that ship with Index Server have been thoroughly tested.  These include the HTML, Microsoft Office, and text filters. If you haven't installed any third party filters, it's safe (and more efficient) to run Webhits in the IIS process on your Web server.</p>
+
+<p>Internet Service Manager can configure virtual directories for running in or out of the IIS process. To configure Webhits to run in or out of process, edit the properties of the virtual directory in which the .htw files reside. Then, in the <strong>Directory</strong> property sheet, set the <strong>Run in separate memory space (isolated process)</strong> check box appropriately. By default, Index Server installs .htw file samples in the /IISsamples/ISsamples/Oop virtual directory.</p>
+
+<p>If you cannot run Webhits in the IIS process, limitations in IIS impose restrictions on Webhits. For example, files in virtual directories on computers other than the Web server cannot be displayed using Webhits when Webhits is running out of the IIS process. Also, files with extensions not associated with an IFilter cannot be displayed with Webhits when Webhits is running out of the IIS process and when the registry parameter <strong>WebhitsDisplayScript</strong> is not set to 2.</p>
+
+<p>You can work around these limitations, but the workaround compromises security for the Web server. Use this workaround only if security is not a significant concern for your installation. The workaround requires the administrator to do the following:</p>
+
+<ul>
+<li>Enable anonymous access to the directory through Internet Service Manager.</li>
+<li>Configure an account that has administrative access as the default user for the directory.</li>
+</ul>
+
+<big>To configure a user account</big><!--</p>--><br>
+
+<ol>
+<li>Click <strong>Start</strong>, point to <strong>Windows NT 4.0 Option Pack</strong>, point to <strong>Microsoft Transaction Server</strong>, and click <strong>Transaction Server Explorer</strong>.</li>
+<li> In MMC, double-click the <strong>Microsoft Transaction Server</strong> folder.</li>
+<li>Open the <strong>Computers</strong> folder.</li>
+<li>Open <strong>My Computer</strong> (or the folder representing your Web server).</li>
+<li>Open <strong>Packages Installed</strong>.</li>
+<li>Right-click the package representing Iissamples/Issamples/Oop and click <strong>Properties</strong> on the menu to open the property sheet.</li>
+<li>On the <strong>Identity</strong> property sheet, type a user name and password in the <strong>User</strong> and <strong>Password</strong> boxes, and click <strong>OK</strong>.</li>
+<p>This account must have administrative privileges on the local computer.<!--</p>--><br>
+</ol>
+
+<hr>
+
+<H2><a name="TechSupport">Your Guide to Microsoft Technical Support</a></H2>
+
+<P>If you have a technical question about Microsoft Index Server, use this online documentation or consult Help by clicking <STRONG>Help</STRONG> during a procedure. If you still have a question, Microsoft offers technical support and services ranging from self-help tools to direct assistance with a Microsoft Technical Support Engineer. Note: The services and prices listed here are available in the United States and Canada only (see <EM><STRONG>Technical Support Worldwide</STRONG></EM> below).</P>
+
+<H3>Self-Help Tools to Find Answers Yourself</H3>
+	
+<P><STRONG>Microsoft Technical Support Online:</STRONG> This innovative site uses the cutting-edge technology of Microsoft to help you access the most relevant technical information and resources to answer your support questions.  Use the Troubleshooting Wizards to easily diagnose and answer technical questions.  Or select technical articles, programming aids, or commonly asked questions from the Microsoft Knowledge Base of over 75,000 articles.  Visit <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A> today and see how easy it is to find the answers you need.</P>
+
+<H3>Direct Assistance with a Microsoft Technical Support Engineer</H3>
+	
+<P><STRONG>Pay-Per-Incident Support:</STRONG> If you still need answers to your technical questions, you can purchase Pay-Per-Incident Support.  In the U.S. and Canada, for a fee of $195US per incident, please call (800) 936-5900, 24 hours a day, seven days a week, including holidays.</P>
+
+<P><EM>Note:  Support fees for the (800)# calls will be billed to your VISA, MasterCard, or American Express credit card.</EM></P>
+  
+<P><STRONG>Priority Annual Support:</STRONG> If you anticipate a high volume of support incidents, or need priority access to Microsoft Technical Support Engineers, you can purchase a Priority Annual Comprehensive Account.  In the U.S. and Canada, for more information or to purchase an annual account at a cost of $1,695US per 10 incidents, call (800) 936-3500, 24 hours a day, 7 days a week, including holidays.  To submit an incident against an existing account, call (800) 936-4900, 24 hours a day, 7 days a week, including holidays.</P>
+  
+<P><STRONG>Submitting questions via the Internet</STRONG>: In the U.S. and Canada, you can also submit your Pay-Per-Incident or Priority Annual support questions via the Internet with Web Response.  For more details, go to Microsoft Technical Support Online at <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A>.</P>
+
+<P><STRONG>Priority Plus:</STRONG> Microsoft Technical Support also offers special accounts for medium-sized businesses that require priority incident resolution, including business-critical support and access to targeted information to assist information-technology and Help desk professionals in support planning for smoother product deployment.  For more information, in the U.S. and Canada, please call (800) 936-3500, 24 hours a day, seven days a week, including holidays.</P>
+
+<P><STRONG>Priority Consult Line:</STRONG> Receive hourly consulting for support questions that fall outside of the traditional technical support realm. These include designing or planning for deployment, software development, code review, and implementation planning. The Consult Line covers all Microsoft products, including those Microsoft products used for developing Internet and Intranet solutions. For more information or to purchase hourly consulting services at $195US per hour (minimum one hour), please call (800) 936-5200, Monday through Friday, excluding holidays, 6:00 A.M. to 6:00 P.M. Pacific time.</P>
+	
+<H3>Additional Support Options</H3>
+ 
+<P><STRONG>Professional Programs and Services:</STRONG> Microsoft Technical Support also offers professional support programs and services for large businesses that require a direct relationship with Microsoft.  For more information, see the Technical Support section of the Help file, or visit Microsoft Technical Support Online at <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A>.</P>
+
+<P><STRONG>Text Telephone:</STRONG> Microsoft text telephone (TTY/TTD) services are available for the deaf or hard-of-hearing. In the United States, using a TTY/TTD modem, dial (425) 635-4948. In Canada, using a TTY/TTD modem, dial (905) 568-9641.</P>
+
+<P><STRONG>Technical Support Worldwide:</STRONG> Support services and prices may vary outside the United States and Canada.  For information on support available outside the U.S. and Canada, contact the local Microsoft subsidiary in your area.  For a list of worldwide Microsoft subsidiaries, see the Technical Support section of the Help file, or visit Microsoft Technical Support Online at <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A>.</P>
+
+<P><EM>Note: The services and prices listed here are available in the United States and Canada only.  Support services may vary outside the U.S. and Canada.  For more information on support in other locations, contact your local Microsoft subsidiary.</P>
+  
+<P>Microsoft's support services are subject to Microsoft's then-current prices, terms, and conditions, which are subject to change without notice.
+</EM></P>
+
+
+
+<hr>
+
+<h1><a name="CopyrightInformation">Copyright Information</a></h1>
+
+<p>&#169; 1997 Microsoft Corporation</p>
+<p>These materials are provided &#147;as-is,&#148; for informational purposes only.</p>
+<p>Neither Microsoft nor its suppliers makes any warranty, express or implied with respect to the content of these materials or the accuracy of any information contained herein, including, without limitation, the implied warranties of merchantability or fitness for a particular purpose. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you.</p>
+<p>Neither Microsoft nor its suppliers shall have any liability for any damages whatsoever including consequential, incidental, direct, indirect, special, and lost profits. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you. In any event, Microsoft&#146;s and its suppliers&#146; entire liability in any manner arising out of these materials, whether by tort, contract, or otherwise shall not exceed the suggested retail price of these materials.</p>
+<hr>
+
+</font>
+</body>
+</html>

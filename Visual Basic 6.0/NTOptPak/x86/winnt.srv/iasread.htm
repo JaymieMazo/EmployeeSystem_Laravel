@@ -1,0 +1,112 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+<html>
+<!-- REM (C) Copyright 1996-1997 Microsoft Corporation.  All Rights Reserved. 
+     THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+     ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+     THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+     PARTICULAR PURPOSE. -->
+
+<head><title>Internet Authentication Services Readme File</title>
+
+<script language="JavaScript">
+	TempString = navigator.appVersion
+	if (navigator.appName == "Microsoft Internet Explorer"){	
+// Check to see if browser is Microsoft
+		if (TempString.indexOf ("4.") >= 0){
+// Check to see if it is IE 4
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+		}
+		else {
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+		}
+	}
+	else if (navigator.appName == "Netscape") {						
+// Check to see if browser is Netscape
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+	}
+	else
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+</script> 
+
+<meta name="DESCRIPTION" content="Supplements information found in the main documentation">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000"><font face="Verdana,Arial,Helvetica">	
+
+<a name="top"><h1>Internet Authentication Services Readme</h1></a>
+
+<p>Before installing this product, please review this entire document and read <em>Microsoft Internet Authentication Server (IAS) Administration Guide</em>. The document contains critical information for ensuring proper installation and use of the product.</p>
+
+<p><strong><span style="color: #0000FF"><font color="#0000FF">Important</font></span></strong>&nbsp;&nbsp;&nbsp;This readme contains important, late-breaking information about this product.</p> 
+
+<p><strong>Important issues for Beta 3 Customers:</strong></p>
+
+<ul>
+<li>Your configuration information, stored in Adminui.mdb will be left alone. This release will use a new file _Adminui.mdb.  To ensure the safety of your current data please copy Adminui.mdb to another location.</li>
+<li>Before you install this release of IAS on a computer running the Beta 3 version, you must stop Internet Authentication Services and then uninstall it. (If you have to reinstall the release version of IAS at any point, you will also have to stop IAS and then uninstall it first.)
+</ul>
+
+<p><strong>Known Issues with Internet Authentication Services</strong></p>
+
+<ul>
+<li>In the setup program, Internet Authentication Service
+appears as a subcomponent of Internet Connection Services for Remote Access Services under Windows&nbsp;NT 4.0 Option Pack. You will have to enable the Internet Authentication
+Service checkbox to install this service.</li>
+
+<li>If you are installing IAS for the first time, the IAS cannot start until it is configured using the Internet Authentication Service Properties administration tool. <br><br>
+<strong>To configure the Internet Authentication Service:</strong>
+<ol>
+<li>Click Start, point to Programs, then point to Windows&nbsp;NT 4.0 Options Pack, then point to Microsoft Internet Information Server, and then click Internet Service Manager. The Microsoft Management Console (MMC) appears.</li>
+
+<li>In MMC's left pane, double-click IIS, and then double click the local machine name. Below that machine, the RADIUS service appears.</li> 
+<li> Right-click RADIUS, and then click Properties</li>
+
+<li> Configure the server, and then click OK or Apply to save the changes.</li>    
+</ol></li>
+
+<li>Some Network Access Servers do not support passwords of greater than 16 bytes when using Password Authentication Protocol (PAP) from the client. Microsoft cannot guarantee that passwords longer than 16 bytes will authenticate correctly with all access equipment.</li>
+
+<li>Remote administration of IAS will not work if the installation paths for IAS are different on the local server and the remote server. If you will be using remote administration on your network, make sure all your IAS servers have the same installation paths for IAS.</li>
+
+<li>IAS will support either the Password Authentication Protocol (PAP) or Microsoft CHAP (similar to the Challenge Handshake Authentication Protocol (CHAP)). A future release will include CHAP support as well. 
+
+<li>If you uninstall Microsoft® Access 97 or Visual Basic® from a computer running Internet Authentication Services, you must reinstall Internet Authentication Services after the uninstallation is finished. </li>
+
+<li><strong>To uninstall IAS:</strong>
+<ol>
+	<li>Click Start, point to Programs, then point to Windows&nbsp;NT 4.0 Options Pack, then point to Microsoft Internet Information Server, and then click Internet Service Manager. The Microsoft Management Console (MMC) appears.</li>
+
+<li>In MMC's left pane, double-click IIS, and then double click the local machine name. Below that machine, the RADIUS service appears.</li> 
+<li> Right-click RADIUS, and then click Stop.</li>
+ 
+	<li>Start Windows&nbsp;NT 4.0 Option Pack Setup, then click Next, and then click Add/Remove.</li>
+	<li>In the Components list, click Remote Access Services, and then click Show Subcomponents.</li>
+	<li>Select Internet Authentication Services, then click the check box to clear it.</li>
+	<li>Click OK, then click Next, and then follow the directions on the screen.</li>
+	<li>When Setup has finished removing IAS, restart your computer.</li>
+</ol>
+</li>
+
+<li><strong>To reinstall IAS:</strong>
+<ol>
+	<li>Start Windows&nbsp;NT 4.0 Option Pack Setup, the click Next, and then click Add/Remove.</li>
+	<li>In the Components list, click Remote Access Services, and then click Show Subcomponents.</li>
+	<li>Click the Internet Authentication Services check box.
+	<li>Click OK, then click Next, and then follow the directions on the screen.</li>
+	<li>When Setup has finished installing IAS, restart your computer.</li>
+</ol></li>
+</ul>
+
+<p><strong>For More Information</strong></p>
+
+<p>For information on using the Internet Authentication Server, read the <em>Microsoft Internet Authentication Server (IAS) Administration Guide</em>.</p>
+
+<p><a href="#top">Return to top</a></p>
+
+<hr class="iis" size="1">
+<p align="center"><em><a href="/iishelp/common/colegal.htm">&copy; 1997 by Microsoft Corporation. All rights reserved.</a></em></p>
+
+</font>
+</body>
+</html>
+

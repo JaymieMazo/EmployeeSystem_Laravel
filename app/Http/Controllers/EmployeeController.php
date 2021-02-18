@@ -78,6 +78,7 @@ class EmployeeController extends Controller
         }
         else{
 
+
             $exists=Employee::from('employees as emp')
                         ->select('emp.company_code' , 
                                     'emp.department_code' ,
@@ -90,10 +91,12 @@ class EmployeeController extends Controller
                         ->get();
 
 
-          if( $params_company == '' ||  $params_department ==''  || $params_section == '' 
-          || $employee_name == '' ||   $gender == '' || $status =='' ){
-            return   'blank';
 
+
+          if( $params_company == '' ||  $params_department ==''  || $params_section == '' 
+          ||  $employee_name == ''   ||  $status =='' ){
+            // return $req;
+            return   'blank';
            }
 
           elseif ( $params_company != '' 
@@ -108,47 +111,51 @@ class EmployeeController extends Controller
 
                 //   return   $maxEmp  ;
 
-            // $new_Empcode=str_pad(count($maxEmp)  > 0 ?   $maxEmp[0] ->new_EmpCode: '1' , 3 , '0' , STR_PAD_LEFT); 
+            $new_Empcode=str_pad(count($maxEmp)  > 0 ?   $maxEmp[0] ->new_EmpCode: '1' , 3 , '0' , STR_PAD_LEFT); 
 
           
 
               if($action == "ADD" && count($exists)==0 ) {
                    
-                $new_Empcode=str_pad(count($maxEmp)  > 0 ?   $maxEmp[0] ->new_Empcode: '1' , 3 , '0' , STR_PAD_LEFT); 
+                // $new_Empcode=str_pad(count($maxEmp)  > 0 ?   $maxEmp[0] ->new_Empcode: '1' , 3 , '0' , STR_PAD_LEFT); 
 
                 // return  $new_Empcode;
                
+
+
+
                     Employee::Insert([
-                        'company_code'=>$params_company , 
-                        'department_code'=> $params_department  ,
-                        'section_code'=>   $params_section , 
-                        'employee_code'=>$new_Empcode,
-                        'employee_name' =>strtoupper($employee_name), 
-                        'gender' =>$gender, 
-                        'age'=>$age,
-                        'civilstatus'=>$civilstatus,
-                        'birthday'=> $bday,
-                        'religion'=>$religion,
-                        'nationality'=>$nationality,
-                        'children'=>$children,
-                        'contract_status' =>strtoupper($status), 
-                        'hired_date'=> $hired_date,
-                        'created_at'=>date('Y-m-d H:i:s') , 
-                        'updated_at' =>date('Y-m-d H:i:s') ,
-                        'updated_by' =>'00005']);
+                                    'company_code'=>$params_company , 
+                                    'department_code'=> $params_department  ,
+                                    'section_code'=>   $params_section , 
+                                    'employee_code'=>$new_Empcode,
+                                    'employee_name' =>strtoupper($employee_name), 
+                                    'gender' =>$gender, 
+                                    'age'=>$age,
+                                    'civilstatus'=>$civilstatus,
+                                    'birthday'=> $bday,
+                                    'religion'=>$religion,
+                                    'nationality'=>$nationality,
+                                    'children'=>$children,
+                                    'contract_status' =>strtoupper($status), 
+                                    'hired_date'=> $hired_date,
+                                    'created_at'=>date('Y-m-d H:i:s') , 
+                                    'updated_at' =>date('Y-m-d H:i:s') ,
+                                    'updated_by' =>'00005']);
                 
                 employee_contact::insert([
                         'employee_code'=>$new_Empcode,
-                        
-                                   
-
+                        'cp_no'=> $req->input('cp_no'), 
+                        'tel_no'=> $req->input('tel_no'), 
+                        'address'=> $req->input('address'), 
+                        'contact_person'=> $req->input('contact_person'), 
+                        'con_cpno'=> $req->input('con_cpno'), 
+                        'email'=> $req->input('email')
                 ]);
                 
 
-
-
                 }elseif($action == "UPDATE") {
-                    // return $status;
+                    
                         Employee::
                                 where('employee_code' , $employee_code)
                                 ->update(['company_code' =>$params_company, 
@@ -163,15 +170,30 @@ class EmployeeController extends Controller
                                         'children'=>$children,
                                         'gender' => $gender, 
                                         'contract_status' =>$status, 
+                                        'retired_date' => $req->input('retired_date'), 
                                         'updated_at' =>date('Y-m-d H:i:s') ,
                                         'updated_by' =>'00005']);   
 
+
+                        employee_contact::where('employee_code' , $employee_code)
+                        ->update([
+                            'employee_code'=>$new_Empcode,
+                            'cp_no'=> $req->input('cp_no'), 
+                            'tel_no'=> $req->input('tel_no'), 
+                            'address'=> $req->input('address'), 
+                            'contact_person'=> $req->input('contact_person'), 
+                            'con_cpno'=> $req->input('con_cpno'), 
+                            'email'=> $req->input('email')
+                    ]);
+
                 }
+
+
                 return $this->get_data(); 
 
             }
         
-       elseif(count($exists)==1){
+       elseif(count($exists)==1 && $action == "ADD"  ){
          return 'exist';}
             
             

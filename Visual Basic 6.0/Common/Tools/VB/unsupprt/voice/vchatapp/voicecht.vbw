@@ -1,0 +1,5 @@
+frmChat = 22, 22, 717, 437, , 0, 0, 0, 0, C
+CHAT_Defs = 0, 0, 0, 0, C
+TCP_Defs = 0, 0, 0, 0, C
+TCP_Functions = 0, 0, 0, 0, C
+CHAT_Functions = 0, 0, 0, 0, C

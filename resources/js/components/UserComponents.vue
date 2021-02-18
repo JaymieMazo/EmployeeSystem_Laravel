@@ -52,7 +52,6 @@
                       Cancel
                     </v-btn>
 </v-col>
-
 <v-simple-table >
   <template v-slot:default>
       <thead >

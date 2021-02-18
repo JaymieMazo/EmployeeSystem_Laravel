@@ -52,14 +52,40 @@
                               </v-col>
 
                               <v-col cols=2>
-                                        <v-text-field
+                                        <!-- <v-text-field
                                           label="Enter Birthday"
                                           v-model="editvar.birthday"
                                          
                                           >
-                                        </v-text-field>
-                            </v-col>
+                                        </v-text-field> -->
 
+
+                                        <v-menu
+                                        v-model="menu2"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        transition="scale-transition"
+                                        offset-y
+                                        min-width="auto"
+                                      >
+                                        <template v-slot:activator="{ on, attrs }">
+                                          <v-text-field
+                                                v-model="editvar.birthday"
+                                                label="Birthday"
+                                                prepend-icon="mdi-calendar"
+                                                readonly
+                                                v-bind="attrs"
+                                                v-on="on"
+                                          ></v-text-field>
+
+                                        </template>
+                                       
+                                        <v-date-picker
+                                          v-model="editvar.birthday"
+                                          @input="menu2 = false"
+                                        ></v-date-picker>
+      </v-menu>
+                            </v-col>
                             <v-col  cols=2>
                                   <v-select
                                           v-model="editvar.gender"
@@ -195,12 +221,68 @@
                                       </v-select>
                               </v-col>
                             <v-col cols=3>
-                                <v-text-field label="Enter Hired Date"
-                                v-model="editvar.hired_date"></v-text-field>
+                                <!-- <v-text-field label="Enter Hired Date"
+                                v-model="editvar.hired_date"></v-text-field> -->
+
+
+                                  <v-menu
+                                        v-model="menu3"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        transition="scale-transition"
+                                        offset-y
+                                        min-width="auto"
+                                      >
+                                        <template v-slot:activator="{ on, attrs }">
+                                          <v-text-field
+                                                v-model="editvar.hired_date"
+                                                label="Hired Date"
+                                                prepend-icon="mdi-calendar"
+                                                readonly
+                                                v-bind="attrs"
+                                                v-on="on"
+                                          ></v-text-field>
+
+                                        </template>
+                                       
+                                        <v-date-picker
+                                          v-model="editvar.hired_date"
+                                          @input="menu3 = false"
+                                        ></v-date-picker>
+      </v-menu>
                             </v-col>
+
+
                             <v-col cols=3>
-                                <v-text-field label="Enter Retired Date"
-                                v-model="editvar.retired_date"></v-text-field>
+                                <!-- <v-text-field label="Enter Retired Date"
+                                v-model="editvar.retired_date"></v-text-field> -->
+
+
+                                <v-menu
+                                        v-model="menu4"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        transition="scale-transition"
+                                        offset-y
+                                        min-width="auto"
+                                      >
+                                        <template v-slot:activator="{ on, attrs }">
+                                          <v-text-field
+                                                v-model="editvar.retired_date"
+                                                label="Retired Date"
+                                                prepend-icon="mdi-calendar"
+                                                readonly
+                                                v-bind="attrs"
+                                                v-on="on"
+                                          ></v-text-field>
+
+                                        </template>
+                                       
+                                        <v-date-picker
+                                          v-model="editvar.retired_date"
+                                          @input="menu4 = false"
+                                        ></v-date-picker>
+      </v-menu>
                             </v-col>
                                 
                             </v-row>
@@ -343,7 +425,11 @@
 export default {
 				data(){
 				        return{
-               
+                // date: new Date().toISOString().substr(0, 10),
+                  menu: false,
+                  menu2: false,
+                  menu3:false,
+                  menu4:false,
 				            companies:[],
                     departments:[],
                     sections:[],
@@ -361,7 +447,6 @@ export default {
                     addvar:{ action:'ADD' , employee_name:null, gender:null ,       contract_status:null, age:null , birthday:null ,  civilstatus: null, nationality:null , religion:null ,  children:null , company_code:null, 
                     department_code:null , section_code:null , hired_date: null , retired_date:null 
                               },
-                   
 				        } 
 				}, 
 
@@ -461,13 +546,13 @@ export default {
 
              
             tab_change(key){
-              if(key==0){
-                this.tab_head="Personal Information"
-              }else if(key==1){
-                  this.tab_head="Contact Information"
-              }else if(key==2){
+                if(key==0){
                   this.tab_head="Personal Information"
-              }
+                }else if(key==1){
+                    this.tab_head="Contact Information"
+                }else if(key==2){
+                    this.tab_head="Personal Information"
+                }
             }
   				}, 
   }

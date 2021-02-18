@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<!-- REM (C) Copyright 1996-1997 Microsoft Corporation.  All Rights Reserved. 
+     THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+     ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+     THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+     PARTICULAR PURPOSE. -->
+
+<head><title>Connection Point Services Readme File</title>
+
+<SCRIPT LANGUAGE="JavaScript">
+	TempString = navigator.appVersion
+	if (navigator.appName == "Microsoft Internet Explorer"){	
+// Check to see if browser is Microsoft
+		if (TempString.indexOf ("4.") >= 0){
+// Check to see if it is IE 4
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+		}
+		else {
+			document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+		}
+	}
+	else if (navigator.appName == "Netscape") {						
+// Check to see if browser is Netscape
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/coua.css">');
+	}
+	else
+		document.writeln('<link rel="stylesheet" type="text/css" href="/iishelp/common/cocss.css">');
+</script> 
+
+<META NAME="DESCRIPTION" CONTENT="Supplements information found in the main documentation"></head>
+
+<body bgcolor="#FFFFFF" text="#000000"><font face="Verdana,Arial,Helvetica">	
+
+<a name="top"></a>
+<a name="E10E28"><h1>Connection Point Services Readme</h1></a>
+
+<ul>
+<li><a href="#E10E31" name="LOCE10E31" >Known Issues</a></li>
+<li><a href="#E10E32" name="LOCE10E32" >For More Information</a></li>
+</ul>
+
+<p>Before installing this product, please review this entire document and read the
+<em>Microsoft Connection Point Services Administration Guide</em> and the <em>Microsoft Connection Point Services Administration Reference</em>. These documents contain critical information for ensuring proper
+installation and use of the product.</p>
+<p>If you are running Windows NT Workstation with Personal Web Manager component of the Windows&nbsp;NT 4.0 Option Pack, the full set of documentation will not be available from the Product Documentation shortcut on the Start menu. This means that the Connection Point Services documentation will not be available. To view the Connection Point Services documentation, you will need to view the documentation from within Internet Service Manager.  To do this: 
+
+<ol>
+<li>Click Start, then click Windows NT&nbsp;4.0 Option Pack, then click Microsoft Personal Web Server, and then click Internet Service Manager.</li>  
+<li>Select Internet Information Server from the left pane.</li>
+<li>On the Help menu, click Help on Internet Information Server.  This will display the full set of documentation, including the documentation for Connection Point Services.</li>  
+</ol>
+
+To change the Product Documentation shortcut on the Start menu to display the full set of documentation, uninstall the Personal Web Manager component for Personal Web Server. </p>
+
+<p><strong><span style="color: #0000FF"><font color="#0000FF">Important</font></span></strong>&nbsp;&nbsp;&nbsp;This readme contains important, late-breaking information about this product.</p>
+
+<p><a name=E10E31><strong>Known Issues with Connection Point Services</strong></a></p>
+
+<ul>
+<li>When you first start the Phone Book Administrator, you will not be able to post to the Phone Book Service because of security reasons.To enable posting: 
+<ol>
+<li>Make sure the Default FTP service is installed and running on the computer running the Phone Book Service. If Default FTP service is not installed, see your <i>Internet Information Server Installation and Planning Guide</i> for installation procedures.</li>
+<li>Make sure the virtual root directory for posting has been set up. To do this, in the left pane of the Microsoft Management Console, double-click Default FTP site. A virtual directory called PBSData should appear in the tree. <br><br>If you have installed the FTP service after installing Phone Book Service, you will have to set up the PBSData virtual directory. <br><br>To set up the virtual directory, right-click Default FTP site, point to New, and then click Virtual Directory. Then follow the directions in the New Virtual Directory wizard: 
+<ol>
+<li>When it prompts you for the alias of the virtual directory,type PBSdata.</li>
+<li>When it prompts you for the physical path of the directory, type: <br><strong>c:\inetpub\wwwroot\Phone Book Service\data</strong> </li>
+<li>When it prompts you to provide access permissions, make sure <strong>Allow Write Access</strong> is checked, and then click Finish.</li>
+</ol>
+</li>
+<li>If you have not already done so in the previous step, enable write access to the posting virtual directory. To do this, right-click PBSData, and then click Properties. On the Virtual Directory tab, make sure the Write box is checked. </li>
+<li>If you want the Phone Book Service directory to be shared securely, you can specify a Windows NT user account that will be used by Phone Book Administrator. For more information, see the "Security Settings" section in the <i>Connection Point Services Administration Reference</i>. </li>
+</ol>
+For more information, see the Connection Point Services Administration Guide.</li>
+<li>If you uninstall Phone Book Service, the virtual directories are not automatically removed from the Microsoft Management Console. You will have to remove them by hand.</li>
+<li>If you are running Connection Point Services remotely and the file server connection
+is lost, a run-time error may occur or the Phone Book Administrator will hang.</li>
+<li>Phone Book Administrator does not support remotely posting or importing phone books from one type of platform to a different type (for example, from an x86 computer to an Alpha computer).</li>
+<li>Phone book files must be in plain text format (.txt).  Phone book files saved in other formats (for example, Word, Wordpad, or Rich-Text Format) will not work properly.</li>
+<li>Phone book files will not post correctly when usernames or hostnames are typed in a double-byte character set (DBCS). Please post using the IP address of the phone book server and an SBCS user account.</li>
+<li>If you uninstall Microsoft&reg; Access 97 or Visual Basic&reg; from a computer running Phone Book Administrator, you must reinstall Phone Book Adminstrator after the uninstallation is finished. </li>
+<li>Phone Book Administrator can only import region files containing 200 region entries or fewer by using the graphical interface. If your region file contains more than 200 region entries, either split the file into two separate files, or import the region file by using the command-line interface. </li>
+</ul>
+
+<a name="E10E32"><p><strong>For More Information</strong></p></a>
+
+<p>For help using Connection Point Services, read the <em>Microsoft Connection Point Services Administration Guide</em> and the <em>Microsoft Connection Point Administration Reference</em>.</p>
+
+<p><a href="#top">Return to top</a></p>
+	
+<hr>
+
+<h1><a name="CopyrightInformation">Copyright Information</a></h1>
+
+<p>&copy; 1997 Microsoft Corporation</p>
+<p>These materials are provided &#147;as-is,&#148; for informational purposes only.</p>
+<p>Neither Microsoft nor its suppliers makes any warranty, express or implied with respect to the content of these materials or the accuracy of any information contained herein, including, without limitation, the implied warranties of merchantability or fitness for a particular purpose. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you.</p>
+<p>Neither Microsoft nor its suppliers shall have any liability for any damages whatsoever including consequential incidental, direct, indirect, special, and loss profits. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you. In any event, Microsoft&#146;s and its suppliers&#146; entire liability in any manner arising out of these materials, whether by tort, contract, or otherwise shall not exceed the suggested retail price of these materials.</p>
+
+<hr class="iis" size="1">
+<p align="center"><em><a href="/iishelp/common/colegal.htm">&copy; 1997 by Microsoft Corporation. All rights reserved.</a></em></p>
+
+</font>
+</body>
+</html>

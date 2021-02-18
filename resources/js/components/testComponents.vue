@@ -94,10 +94,12 @@
 <script>
 
 
+
+
 export default {
      data () {
       return {
-    // image: { backgroundImage: "url(https://vuejs.org/images/logo.png)" },
+
       image:"/resources/images/photo.jpeg",
         company_code_update:null, 
         company_name_input:null,

@@ -126,7 +126,9 @@ export default {
 
         computed:{
               dept(){
-                if(this.company_code == null){
+       
+                if(this.company_code == null  ||  this.company_code == ''){
+                  
                   return this.departments
                 }else{
                      return this.departments.filter(

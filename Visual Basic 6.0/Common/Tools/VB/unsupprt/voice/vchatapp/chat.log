@@ -1,0 +1,14 @@
+Line 99: Class ComctlLib.Toolbar of control Tools was not a loaded control class.
+Line 134: Class MSWinsockLib.Winsock of control TCPSocket was not a loaded control class.
+Line 141: Class ComctlLib.ImageList of control ImgIcons was not a loaded control class.
+Line 106: The property name _ExtentX in Tools is invalid.
+Line 107: The property name _ExtentY in Tools is invalid.
+Line 108: The property name ImageList in Tools is invalid.
+Line 132: The property name Buttons in Tools is invalid.
+Line 138: The property name _ExtentX in TCPSocket is invalid.
+Line 139: The property name _ExtentY in TCPSocket is invalid.
+Line 144: The property name _ExtentX in ImgIcons is invalid.
+Line 145: The property name _ExtentY in ImgIcons is invalid.
+Line 147: The property name ImageWidth in ImgIcons is invalid.
+Line 148: The property name ImageHeight in ImgIcons is invalid.
+Line 195: The property name Images in ImgIcons is invalid.

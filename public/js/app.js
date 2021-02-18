@@ -2222,7 +2222,7 @@ __webpack_require__.r(__webpack_exports__);
     dept: function dept() {
       var _this2 = this;
 
-      if (this.company_code == null) {
+      if (this.company_code == null || this.company_code == '') {
         return this.departments;
       } else {
         return this.departments.filter(function (rec) {
@@ -2635,9 +2635,96 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      // date: new Date().toISOString().substr(0, 10),
+      menu: false,
+      menu2: false,
+      menu3: false,
+      menu4: false,
       companies: [],
       departments: [],
       sections: [],
@@ -3004,6 +3091,76 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _ref;
@@ -3013,7 +3170,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       CategoryData: [],
       dialog: false,
       ImgUrl: __webpack_require__(/*! ../../images/company.jpeg */ "./resources/images/company.jpeg")
-    }, _defineProperty(_ref, "CategoryData", []), _defineProperty(_ref, "category", null), _defineProperty(_ref, "btnRetrieve", false), _defineProperty(_ref, "btnSelAll", false), _defineProperty(_ref, "retdata", {}), _defineProperty(_ref, "deletedData", []), _ref;
+    }, _defineProperty(_ref, "CategoryData", []), _defineProperty(_ref, "category", null), _defineProperty(_ref, "btnRetrieve", false), _defineProperty(_ref, "btnSelAll", false), _defineProperty(_ref, "retdata", {}), _defineProperty(_ref, "deletedData", []), _defineProperty(_ref, "count", 0), _ref;
   },
   created: function created() {
     this.onLoaddialog();
@@ -3035,9 +3192,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       axios.get('api/junks').then(function (res) {
-        _this2.CategoryData = res.data; // console.log(this.CategoryData )
-        // adding deleteflg as column
-
+        _this2.CategoryData = res.data;
         var i = 0;
 
         for (i = 0; i < _this2.CategoryData.length; i++) {
@@ -3047,6 +3202,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     viewdialog: function viewdialog(category) {
       this.category = category;
+
+      if (this.category == "Company") {
+        this.count = this.CategoryData["cntCompany"];
+      } else if (this.category == "Department") {
+        this.count = this.CategoryData["cntDepartment"];
+      } else if (this.category == "Section") {
+        this.count = this.CategoryData["cntSection"];
+      } else if (this.category == "Employee") {
+        this.count = this.CategoryData["cntEmployee"];
+      }
+
+      if (this.count == 0) {
+        alert('No data to show!!!');
+      }
+
       this.btnSelAll = false;
       var i = 0;
       this.deletedData = this.deletedData1;
@@ -3167,8 +3337,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3211,24 +3379,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3812,7 +3962,7 @@ __webpack_require__.r(__webpack_exports__);
         } else if (res.data == 'exist') {
           alert('Section already exist');
         } else {
-          alert('refresh');
+          // alert('refresh')
           _this4.sections = res.data.Section;
         }
       });
@@ -3865,7 +4015,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -4173,59 +4322,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       img: __webpack_require__(/*! ../../images/acc1.png */ "./resources/images/acc1.png"),
       count: [],
+      count2: null,
+      monthly_data: [],
+      jan: 2,
       chartOptions: {
         chart: {
-          type: 'column'
+          type: 'column',
+          width: 970
         },
         title: {
-          text: 'Monthly Average Rainfall'
+          text: 'Monthly Resignation Rate as of 2020'
         },
-        subtitle: {
-          text: 'Source: WorldClimate.com'
+        accessibility: {
+          announceNewData: {
+            enabled: true
+          }
         },
         xAxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          crosshair: true
+          type: 'category'
         },
         yAxis: {
-          min: 0,
           title: {
-            text: 'Rainfall (mm)'
+            text: 'No. of employees Resigned'
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        plotOptions: {
+          series: {
+            borderWidth: 0,
+            dataLabels: {
+              enabled: true,
+              format: '{point.y:.1f}'
+            }
           }
         },
         tooltip: {
-          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-          footerFormat: '</table>',
-          shared: true,
-          useHTML: true
-        },
-        plotOptions: {
-          column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-          }
+          headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+          pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:}</b> of total<br/>'
         },
         series: [{
-          name: 'Tokyo',
-          data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-        }, {
-          name: 'New York',
-          data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-        }, {
-          name: 'London',
-          data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-        }, {
-          name: 'Berlin',
-          data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+          name: "Month",
+          colorByPoint: true,
+          data: []
         }]
       }
     };
@@ -4235,8 +4380,35 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('api/home').then(function (res) {
       _this.count = res.data;
-      console.log(_this.count);
     });
+  },
+  mounted: function mounted() {
+    setTimeout(function () {
+      var _this2 = this;
+
+      this.message = 'Data Fetched';
+      axios.get('api/home').then(function (res) {
+        _this2.monthly_data = res.data.Months;
+        console.log(res.data.Months);
+        _this2.chartOptions.series[0].data = _this2.monthly_data;
+      });
+    }.bind(this), 100);
+  },
+  computed: {
+    count1: function count1() {
+      axios.get('api/home').then(function (res) {
+        return res.data.Allemp + 2;
+      });
+    },
+    count3: function count3() {
+      var _this3 = this;
+
+      axios.get('api/home').then(function (res) {
+        _this3.monthly_data = res.data.Months;
+        console.log(_this3.monthly_data[0]);
+        return _this3.monthly_data[0];
+      });
+    }
   }
 });
 
@@ -4347,7 +4519,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      // image: { backgroundImage: "url(https://vuejs.org/images/logo.png)" },
       image: "/resources/images/photo.jpeg",
       company_code_update: null,
       company_name_input: null,
@@ -8967,7 +9138,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.HR[data-v-fa6affac]{\r\n    background-color: burlywood;\r\n    width:100%;\r\n    height:80px;\r\n    text-align: center;\r\n    font-family: arial;\r\n    color:darkmagenta;\r\n    font-size:25px;\n}\n.p1[data-v-fa6affac]{\r\nbackground-color: lightpink;\r\nwidth:100px;\r\ntext-align: center;\n}\n.p2[data-v-fa6affac]{\r\nheight:50px;\r\nwidth:100px;\r\ntext-align: center;\r\nborder: 1px solid grey;\r\nfont-size: 20px;\n}\n.cl[data-v-fa6affac]{\r\n    background-color: yellow;\r\n    height: 10px;\n}\n.count[data-v-fa6affac]{\r\n    text-align:center;\n}\r\n", ""]);
+exports.push([module.i, "\n.HR[data-v-fa6affac]{\r\n    background-color: burlywood;\r\n    width:100%;\r\n    height:80px;\r\n    text-align: center;\r\n    font-family: arial;\r\n    color:darkmagenta;\r\n    font-size:25px;\n}\n.p1[data-v-fa6affac]{\r\nbackground-color: lightpink;\r\nwidth:100px;\r\ntext-align: center;\n}\n.p2[data-v-fa6affac]{\r\nheight:50px;\r\nwidth:100px;\r\ntext-align: center;\r\nborder: 1px solid grey;\r\nfont-size: 20px;\n}\n.cl[data-v-fa6affac]{\r\n    background-color: yellow;\r\n    height: 10px;\n}\n.count[data-v-fa6affac]{\r\n    text-align:center;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -42066,20 +42237,93 @@ var render = function() {
                                       "v-col",
                                       { attrs: { cols: "2" } },
                                       [
-                                        _c("v-text-field", {
-                                          attrs: { label: "Enter Birthday" },
-                                          model: {
-                                            value: _vm.editvar.birthday,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.editvar,
-                                                "birthday",
-                                                $$v
-                                              )
+                                        _c(
+                                          "v-menu",
+                                          {
+                                            attrs: {
+                                              "close-on-content-click": false,
+                                              "nudge-right": 40,
+                                              transition: "scale-transition",
+                                              "offset-y": "",
+                                              "min-width": "auto"
                                             },
-                                            expression: "editvar.birthday"
-                                          }
-                                        })
+                                            scopedSlots: _vm._u([
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-text-field",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              label: "Birthday",
+                                                              "prepend-icon":
+                                                                "mdi-calendar",
+                                                              readonly: ""
+                                                            },
+                                                            model: {
+                                                              value:
+                                                                _vm.editvar
+                                                                  .birthday,
+                                                              callback: function(
+                                                                $$v
+                                                              ) {
+                                                                _vm.$set(
+                                                                  _vm.editvar,
+                                                                  "birthday",
+                                                                  $$v
+                                                                )
+                                                              },
+                                                              expression:
+                                                                "editvar.birthday"
+                                                            }
+                                                          },
+                                                          "v-text-field",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      )
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ]),
+                                            model: {
+                                              value: _vm.menu2,
+                                              callback: function($$v) {
+                                                _vm.menu2 = $$v
+                                              },
+                                              expression: "menu2"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(" "),
+                                            _c("v-date-picker", {
+                                              on: {
+                                                input: function($event) {
+                                                  _vm.menu2 = false
+                                                }
+                                              },
+                                              model: {
+                                                value: _vm.editvar.birthday,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.editvar,
+                                                    "birthday",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "editvar.birthday"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
                                       ],
                                       1
                                     ),
@@ -42521,20 +42765,94 @@ var render = function() {
                                       "v-col",
                                       { attrs: { cols: "3" } },
                                       [
-                                        _c("v-text-field", {
-                                          attrs: { label: "Enter Hired Date" },
-                                          model: {
-                                            value: _vm.editvar.hired_date,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.editvar,
-                                                "hired_date",
-                                                $$v
-                                              )
+                                        _c(
+                                          "v-menu",
+                                          {
+                                            attrs: {
+                                              "close-on-content-click": false,
+                                              "nudge-right": 40,
+                                              transition: "scale-transition",
+                                              "offset-y": "",
+                                              "min-width": "auto"
                                             },
-                                            expression: "editvar.hired_date"
-                                          }
-                                        })
+                                            scopedSlots: _vm._u([
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-text-field",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              label:
+                                                                "Hired Date",
+                                                              "prepend-icon":
+                                                                "mdi-calendar",
+                                                              readonly: ""
+                                                            },
+                                                            model: {
+                                                              value:
+                                                                _vm.editvar
+                                                                  .hired_date,
+                                                              callback: function(
+                                                                $$v
+                                                              ) {
+                                                                _vm.$set(
+                                                                  _vm.editvar,
+                                                                  "hired_date",
+                                                                  $$v
+                                                                )
+                                                              },
+                                                              expression:
+                                                                "editvar.hired_date"
+                                                            }
+                                                          },
+                                                          "v-text-field",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      )
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ]),
+                                            model: {
+                                              value: _vm.menu3,
+                                              callback: function($$v) {
+                                                _vm.menu3 = $$v
+                                              },
+                                              expression: "menu3"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(" "),
+                                            _c("v-date-picker", {
+                                              on: {
+                                                input: function($event) {
+                                                  _vm.menu3 = false
+                                                }
+                                              },
+                                              model: {
+                                                value: _vm.editvar.hired_date,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.editvar,
+                                                    "hired_date",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "editvar.hired_date"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
                                       ],
                                       1
                                     ),
@@ -42543,22 +42861,95 @@ var render = function() {
                                       "v-col",
                                       { attrs: { cols: "3" } },
                                       [
-                                        _c("v-text-field", {
-                                          attrs: {
-                                            label: "Enter Retired Date"
-                                          },
-                                          model: {
-                                            value: _vm.editvar.retired_date,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.editvar,
-                                                "retired_date",
-                                                $$v
-                                              )
+                                        _c(
+                                          "v-menu",
+                                          {
+                                            attrs: {
+                                              "close-on-content-click": false,
+                                              "nudge-right": 40,
+                                              transition: "scale-transition",
+                                              "offset-y": "",
+                                              "min-width": "auto"
                                             },
-                                            expression: "editvar.retired_date"
-                                          }
-                                        })
+                                            scopedSlots: _vm._u([
+                                              {
+                                                key: "activator",
+                                                fn: function(ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-text-field",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: {
+                                                              label:
+                                                                "Retired Date",
+                                                              "prepend-icon":
+                                                                "mdi-calendar",
+                                                              readonly: ""
+                                                            },
+                                                            model: {
+                                                              value:
+                                                                _vm.editvar
+                                                                  .retired_date,
+                                                              callback: function(
+                                                                $$v
+                                                              ) {
+                                                                _vm.$set(
+                                                                  _vm.editvar,
+                                                                  "retired_date",
+                                                                  $$v
+                                                                )
+                                                              },
+                                                              expression:
+                                                                "editvar.retired_date"
+                                                            }
+                                                          },
+                                                          "v-text-field",
+                                                          attrs,
+                                                          false
+                                                        ),
+                                                        on
+                                                      )
+                                                    )
+                                                  ]
+                                                }
+                                              }
+                                            ]),
+                                            model: {
+                                              value: _vm.menu4,
+                                              callback: function($$v) {
+                                                _vm.menu4 = $$v
+                                              },
+                                              expression: "menu4"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(" "),
+                                            _c("v-date-picker", {
+                                              on: {
+                                                input: function($event) {
+                                                  _vm.menu4 = false
+                                                }
+                                              },
+                                              model: {
+                                                value: _vm.editvar.retired_date,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.editvar,
+                                                    "retired_date",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "editvar.retired_date"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        )
                                       ],
                                       1
                                     )
@@ -42920,7 +43311,7 @@ var render = function() {
     [
       _c(
         "v-col",
-        { attrs: { cols: "6" } },
+        { attrs: { cols: "4" } },
         [
           _c("v-hover", {
             scopedSlots: _vm._u([
@@ -43013,158 +43404,160 @@ var render = function() {
             ])
           }),
           _vm._v(" "),
-          [
-            _c(
-              "v-dialog",
-              {
-                attrs: { width: "50%" },
-                model: {
-                  value: _vm.dialog,
-                  callback: function($$v) {
-                    _vm.dialog = $$v
-                  },
-                  expression: "dialog"
-                }
-              },
-              [
+          _vm.count != 0
+            ? [
                 _c(
-                  "v-card",
+                  "v-dialog",
+                  {
+                    attrs: { width: "50%" },
+                    model: {
+                      value: _vm.dialog,
+                      callback: function($$v) {
+                        _vm.dialog = $$v
+                      },
+                      expression: "dialog"
+                    }
+                  },
                   [
-                    _c("v-img", {
-                      attrs: {
-                        height: "200px",
-                        width: "650px",
-                        "margin-top": "20px",
-                        src: _vm.ImgUrl
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("v-card-title"),
-                    _vm._v(" "),
                     _c(
-                      "v-card-text",
+                      "v-card",
                       [
-                        _c("v-simple-table", [
-                          _c("thead", [
-                            _c("th", [_vm._v("No")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v("Company Name")]),
-                            _vm._v(" "),
-                            _c("th", [_vm._v(" Select")])
-                          ]),
-                          _vm._v(" "),
+                        _c("v-img", {
+                          attrs: {
+                            height: "200px",
+                            width: "700px",
+                            "margin-top": "20px",
+                            src: _vm.ImgUrl
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-card-title"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c("v-simple-table", [
+                              _c("thead", [
+                                _c("th", [_vm._v("No")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v("Company Name")]),
+                                _vm._v(" "),
+                                _c("th", [_vm._v(" Select")])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.deletedData, function(item, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.name))]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-checkbox", {
+                                          model: {
+                                            value: item.retrieveFlg,
+                                            callback: function($$v) {
+                                              _vm.$set(item, "retrieveFlg", $$v)
+                                            },
+                                            expression: "item.retrieveFlg"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-card-actions", [
                           _c(
-                            "tbody",
-                            _vm._l(_vm.deletedData, function(item, index) {
-                              return _c("tr", { key: index }, [
-                                _c("td", [_vm._v(_vm._s(index + 1))]),
-                                _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(item.name))]),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c("v-checkbox", {
-                                      model: {
-                                        value: item.retrieveFlg,
-                                        callback: function($$v) {
-                                          _vm.$set(item, "retrieveFlg", $$v)
-                                        },
-                                        expression: "item.retrieveFlg"
+                            "div",
+                            { staticClass: "ma-auto" },
+                            [
+                              _c("span", { staticClass: "ret" }, [
+                                _vm._v("RETRIEVE")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { icon: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.mRetrieve()
+                                    }
+                                  },
+                                  model: {
+                                    value: _vm.btnRetrieve,
+                                    callback: function($$v) {
+                                      _vm.btnRetrieve = $$v
+                                    },
+                                    expression: "btnRetrieve"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-icon",
+                                    { attrs: { large: "", color: "primary" } },
+                                    [_vm._v("mdi-rotate-right")]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                [
+                                  _c("v-checkbox", {
+                                    staticClass: "ret",
+                                    attrs: {
+                                      large: "",
+                                      color: "primary",
+                                      label: "SELECT ALL"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.mSelectAll()
                                       }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ])
-                            }),
-                            0
+                                    },
+                                    model: {
+                                      value: _vm.btnSelAll,
+                                      callback: function($$v) {
+                                        _vm.btnSelAll = $$v
+                                      },
+                                      expression: "btnSelAll"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ])
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c("v-card-actions", [
-                      _c(
-                        "div",
-                        { staticClass: "ma-auto" },
-                        [
-                          _c("span", { staticClass: "ret" }, [
-                            _vm._v("RETRIEVE")
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { icon: "" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.mRetrieve()
-                                }
-                              },
-                              model: {
-                                value: _vm.btnRetrieve,
-                                callback: function($$v) {
-                                  _vm.btnRetrieve = $$v
-                                },
-                                expression: "btnRetrieve"
-                              }
-                            },
-                            [
-                              _c(
-                                "v-icon",
-                                { attrs: { large: "", color: "primary" } },
-                                [_vm._v("mdi-rotate-right")]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            [
-                              _c("v-checkbox", {
-                                staticClass: "ret",
-                                attrs: {
-                                  large: "",
-                                  color: "primary",
-                                  label: "SELECT ALL"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.mSelectAll()
-                                  }
-                                },
-                                model: {
-                                  value: _vm.btnSelAll,
-                                  callback: function($$v) {
-                                    _vm.btnSelAll = $$v
-                                  },
-                                  expression: "btnSelAll"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ])
+                    )
                   ],
                   1
                 )
-              ],
-              1
-            )
-          ]
+              ]
+            : _vm._e()
         ],
         2
       ),
       _vm._v(" "),
       _c(
         "v-col",
-        { attrs: { cols: "6" } },
+        { attrs: { cols: "4" } },
         [
           _c("v-hover", {
             scopedSlots: _vm._u([
@@ -43225,7 +43618,7 @@ var render = function() {
                                     "div",
                                     {
                                       staticClass:
-                                        "d-flex \r\n                                        transition-fast-in-fast-out\r\n                                        grey lighten-1\r\n                                        v-card--reveal \r\n                                        display-3 \r\n                                        white--text",
+                                        "d-flex \r\n                                        transition-fast-in-fast-out\r\n                                        grey lighten-1\r\n                                        v-card--reveal \r\n                                        display-3 \r\n                                        white--text center",
                                       staticStyle: { height: "227.5px" },
                                       on: {
                                         click: function($event) {
@@ -43236,7 +43629,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\r\n                                            Department\r\n                                      "
+                                        "\r\n                                        Dept\r\n                                      "
                                       )
                                     ]
                                   )
@@ -43259,7 +43652,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-col",
-        { attrs: { cols: "6" } },
+        { attrs: { cols: "4" } },
         [
           _c("v-hover", {
             scopedSlots: _vm._u([
@@ -43426,6 +43819,194 @@ var render = function() {
                                     [
                                       _vm._v(
                                         "\r\n          Employees\r\n          "
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-col",
+        [
+          _c("v-hover", {
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var hover = ref.hover
+                  return [
+                    _c(
+                      "v-expand-transition",
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.show,
+                                expression: "show"
+                              }
+                            ],
+                            attrs: { height: "300px" }
+                          },
+                          [
+                            _c(
+                              "v-card-title",
+                              { staticClass: "cyan lighten-3 " },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "pa-1" },
+                                  [
+                                    _c(
+                                      "v-badge",
+                                      {
+                                        attrs: {
+                                          color: "pink",
+                                          content:
+                                            _vm.CategoryData["cntEmployee"]
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\r\n                  Positions\r\n              "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("v-expand-transition", [
+                              hover
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "d-flex \r\n            transition-fast-in-fast-out\r\n             grey lighten-1\r\n             v-card--reveal \r\n             display-3 \r\n             white--text",
+                                      staticStyle: { height: "227.5px" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.viewdialog("Employee"),
+                                            (_vm.dialog = !_vm.dialog)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n          Positions\r\n          "
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-col",
+        [
+          _c("v-hover", {
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(ref) {
+                  var hover = ref.hover
+                  return [
+                    _c(
+                      "v-expand-transition",
+                      [
+                        _c(
+                          "v-card",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.show,
+                                expression: "show"
+                              }
+                            ],
+                            attrs: { height: "300px" }
+                          },
+                          [
+                            _c(
+                              "v-card-title",
+                              { staticClass: "cyan lighten-3 " },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "pa-1" },
+                                  [
+                                    _c(
+                                      "v-badge",
+                                      {
+                                        attrs: {
+                                          color: "pink",
+                                          content:
+                                            _vm.CategoryData["cntEmployee"]
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\r\n                  Users\r\n              "
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("v-expand-transition", [
+                              hover
+                                ? _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "d-flex \r\n            transition-fast-in-fast-out\r\n             grey lighten-1\r\n             v-card--reveal \r\n             display-3 \r\n             white--text",
+                                      staticStyle: { height: "227.5px" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.viewdialog("Employee"),
+                                            (_vm.dialog = !_vm.dialog)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n          Users\r\n          "
                                       )
                                     ]
                                   )
@@ -43889,7 +44470,11 @@ var render = function() {
                                             textContent: _vm._s(subItem.text)
                                           }
                                         },
-                                        [_vm._v("  XAS")]
+                                        [
+                                          _vm._v(
+                                            "  \n                                              XAS"
+                                          )
+                                        ]
                                       )
                                     ],
                                     1
@@ -43898,9 +44483,7 @@ var render = function() {
                               ],
                               2
                             )
-                          ],
-                      _vm._v(" "),
-                      void 0
+                          ]
                     ]
                   })
                 ],
@@ -45002,7 +45585,11 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-card-text",
-        [_c("highcharts", { attrs: { options: _vm.chartOptions } })],
+        [
+          _c("highcharts", {
+            attrs: { id: "container", options: _vm.chartOptions }
+          })
+        ],
         1
       )
     ],

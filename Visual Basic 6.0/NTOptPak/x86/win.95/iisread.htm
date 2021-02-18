@@ -1,0 +1,820 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html><head><title>Release Notes</title>
+
+<!-- 1117e -->
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+	TempString = navigator.appVersion
+	if (navigator.appName == "Microsoft Internet Explorer"){        
+// Check to see if browser is Microsoft
+		if (TempString.indexOf ("4.") >= 0){
+// Check to see if it is IE 4
+			document.writeln('<link rel="stylesheet" type="text/css" href="../../../common/coua.css">');
+		}
+		else {
+			document.writeln('<link rel="stylesheet" type="text/css" href="../../../common/cocss.css">');
+		}
+	}
+	else if (navigator.appName == "Netscape") {                                             
+// Check to see if browser is Netscape
+		document.writeln('<link rel="stylesheet" type="text/css" href="../../../common/coua.css">');
+	}
+	else
+		document.writeln('<link rel="stylesheet" type="text/css" href="../../../common/cocss.css">');
+//-->
+</script>
+
+
+<META NAME="DESCRIPTION" CONTENT="Release Notes"></head>
+
+
+
+
+<body bgcolor="#FFFFFF" text="#000000"><font face="Verdana,Arial,Helvetica">
+
+
+
+
+
+
+
+
+
+
+<h1>Microsoft Personal Web Server 4.0 Release Notes</h1>
+
+<p>This document contains information about new features, important product considerations, and installation instructions for Microsoft&reg; Personal Web Server (PWS). The following sections are included:
+
+<p>
+<a href="#PWSforWindows95Features">Welcome to Personal Web Server&nbsp;4.0</a><br>
+<a href="#PWSProductComparison">Product Comparison: PWS for Windows&nbsp;95 and PWS for Windows&nbsp;NT Workstation</a><br>
+<a href="#InstallingPWS">Installing PWS&nbsp;4.0</a><br>
+<a href="#UsingPWSProductDocumentation">Product Documentation</a><br>
+<a href="#OtherKnownProblemsandLimitations">Other Known Problems and Limitations</a><br>
+
+
+<A HREF="iigtass.htm">Troubleshooting</A><BR>
+
+
+<a href="#ProvidingFeedback">Providing Feedback</a><br>
+
+
+<a href="#techsupport">Microsoft Technical Support</a><br>
+
+
+</p>
+
+<hr>
+
+<h1><a name="PWSforWindows95Features">Welcome to Personal Web Server&nbsp;4.0</a></h1>
+
+<p>Welcome to Personal Web Server! In the Personal Web Server package, Microsoft has pulled together some exciting new functionality that makes your existing Microsoft&reg; Windows&nbsp;95&reg; or later operating system an even easier platform to use for sharing information on a personal Web site.</p>
+
+<p>The Personal Web Server package makes it easy to install any of the following new features:</p>
+
+<dl>
+
+<dt><strong>Microsoft Personal Web Server 4.0</strong>
+<dd> A desktop Web server that can be used to host a Web site on the corporate intranet, or to develop and test a Web site before hosting the site on an Internet Service Provider (ISP).
+
+<dt><strong>Microsoft Internet Explorer 4.01</strong>
+
+<dd>The  newest version of Microsoft&reg; Internet Explorer delivers the essential features you need to make finding, browsing, and communicating over the Internet a seamless part of the computing experience.
+
+
+
+<dt><strong>Microsoft FrontPage Server Extensions</strong>
+<dd>Supports the use of Microsoft&reg;&nbsp;FrontPage&reg;&nbsp;to manage your Web site, as well as create the site content. 
+
+<dt><strong>Microsoft Transaction Server 2.0</strong>
+<dd> Supports creation of Microsoft&#174; Transaction Server (MTS) applications. A transaction is a server operation that succeeds or fails as a whole, even if the operation involves many steps. MTS also supports process isolation of applications.</dd>
+
+<dt><strong>Microsoft Data Access Components 1.5</strong>
+<dd> Easy use of databases with support for ActiveX&#153; Data Objects and the Microsoft&#174; Access driver.</dd>
+
+
+
+<dt><strong>Internet Connection Services for Microsoft Remote Access Service</strong>
+<dd>A set of services that facilitate the creation of seamless virtual private networks (VPNs), and improved dial-up connections.
+
+
+
+
+<dt><strong>Microsoft Message Queue Client</strong><dd> Allows applications to pass along transaction notification and continue processing without waiting for confirmation that the transaction has completed.
+
+
+
+
+
+
+
+
+
+
+
+
+</dl>
+
+<hr>
+
+<h1><a name="PWSProductComparison">Product Comparison: PWS for Windows&nbsp;95 and PWS for Windows&nbsp;NT Workstation</a></h1>
+
+<p>PWS for Windows&nbsp;95provides a graphical administration interface designed for users with no prior experience creating and administering Web sites. This interface is also provided as the default administration tool in Personal Web Server for Microsoft&reg;&nbsp;Windows&nbsp;NT&reg; Workstation; however, with the Windows&nbsp;NT Workstation version, you can also administer your personal publishing site with Internet Service Manager, the same full-featured administration tool used to control Microsoft Internet Information Server.</p>
+
+<table border=1 width="85%" cellpadding=4 cellspacing =1>
+<caption align="top"><strong>Product Comparison</strong></caption>
+
+<tr>
+<!--Column 1--><th width="30%" bgcolor="#C0C0C0" align="middle" valign="top">Feature</th>
+<!--Column 2--><th width="35%" bgcolor="#C0C0C0" align="middle" valign="top">PWS for Windows&nbsp;NT Workstation</th>
+<!--Column 3--><th width="35%" bgcolor="#C0C0C0" align="middle" valign="top">PWS for Windows&nbsp;95</th></tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">Typical Uses</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">Full-featured site development or personal publishing on a corporate intranet</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">Personal publishing on a low-volume corporate intranet</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">WWW Service</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">Yes</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">Yes</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">FTP Service</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">Yes</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">No</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">Connection Limit</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">10</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">10</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">Active Server Pages</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">Yes</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">Yes</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">Site Use Logging</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">NCSA Log File Format (default) MSCSV standard and extended (optional)</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">NCSA Log File Format</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">Publishing Sources</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">Local and network drives</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">Local drives only</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">Optional ISM Interface</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">Yes</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">No</td>
+</tr>
+<tr>
+<!--Column 1--><th width="30%" align="middle" valign="top">Authentication</th>
+<!--Column 2--><td width="35%" align="middle" valign="top">Basic or Windows&nbsp;NT Challenge/Response</td>
+<!--Column 3--><td width="35%" align="middle" valign="top">None</td>
+</tr>
+</table>
+	
+<hr>
+
+<h1><a name="InstallingPWS">Installing PWS&nbsp;4.0 </a></h1>
+
+<p>These are the system requirements for the installation of PWS.</p>
+
+<table border="1" cellpadding="4" cellspacing="1" width="90%">
+<tr>
+<th width="30%" bgcolor="#C0C0C0" align="Left" valign="top">Hardware Component</th>
+<th width="30%" bgcolor="#C0C0C0" align="Left" valign="top">Requirement</th>
+<th width="30%" bgcolor="#C0C0C0" align="Left" valign="top">Recommendation</th>
+</tr>
+<tr>
+<td>Processor</td><td>33 MHz 486</td><td>90 MHz Pentium&reg;</td>
+</tr>
+<tr>
+<td>RAM</td><td>16 MB</td><td>20 - 32 MB</td>
+</tr>
+<tr>
+<td>Free hard disk space</td><td>30 MB</td><td>40 MB</td>
+</tr>
+<tr>
+<td>Monitor</td><td>VGA</td><td>Super VGA</td>
+</tr>
+</table>
+
+<p>On Windows&nbsp;95 or later, PWS offers the following three installation options:</p>
+
+<ul>
+<li><strong>Minimum install</strong>&nbsp;&nbsp;&nbsp;The minimum necessary components to operate PWS.
+<li><strong>Typical install</strong>&nbsp;&nbsp;&nbsp;Minimum options plus additional functionality and documentation.
+<li><strong>Custom install</strong>&nbsp;&nbsp;&nbsp;Presents all possible components as options, with all options included in the minimum and typical installations pre-selected.
+</ul>
+
+<p>The following table describes the available options for each type of installation. An X in the Min. column indicates options included by default in the Minimum Install option. An X in the Typ. column indicates additional options included in the Typical Install option. Options without an X in either column are available as selections in the Custom Install option.</p>
+
+<table border="1" width="100%" cellpadding="1" cellspacing="1">
+<tr bgcolor="#C0C0C0">
+<th width=8%>Min.</th>
+<th width=8%>Typ.</th>
+<th width=84%>Components and Sub-components </th>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>X</td>
+<td><strong>FrontPage Server Extensions</strong><br>Supports the use of Microsoft&reg;&nbsp;FrontPage&reg;&nbsp;to manage your Web site, as well as create the site content.</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;&nbsp;&nbsp;FrontPage Server Extension Files</td>
+</tr>
+
+
+
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><strong>Internet Connection Services for RAS</strong><br>A set of core Windows&nbsp;NT services that facilitate the creation of secure, seamless virtual private networks (VPNs), and improved dial-up connections. The Personal Web Server installation provides only the Connection Manager Administration Kit (CMAK) component of these services.</td>
+</tr>
+
+
+
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Connection Manager Administration Kit</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Product Documentation</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connection Manager Administration Kit Documentation</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Getting Started Documentation</td>
+</tr>
+
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td><strong>Microsoft Data Access Components</strong><br>
+Easy use of databases with support for ActiveX Data Objects and the Microsoft Access driver.</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Data Sources</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jet and Access</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL Server</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;MDAC: ADO, ODBC, and OLE DB</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ADO Documentation</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MDAC Core Files: ADO, ODBC, and OLE DB</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Remote Data Service</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RDS Core Files</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RDS Docs</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RDS Samples</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RDS v1.1 Files</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><strong>Microsoft Message Queue</strong><br>
+Allows applications to pass along transaction notification and continue processing without waiting for confirmation that the transaction has completed.</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;HTML Documentation</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Microsoft Message Queue Client</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Software Development Kit</td>
+</tr>
+
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td><strong>Personal Web Server</strong><br>
+A Web server that uses TCP/IP to host a Web site on a corporate intranet.</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Common Program Files</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;&nbsp;&nbsp;Documentation</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active Server Pages</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Common Documentation Files</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>X</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PWS Administrator Documentation</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Personal Web Manager</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;World Wide Web Server</td>
+</tr>
+
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td><strong>Transaction Server</strong><br>
+Supports creation of Microsoft Transaction Server applications. A transaction is a server operation that succeeds or fails as a whole, even if the operation involves many steps. MTS also supports process isolation of applications.</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Transaction Server Core Components</td>
+</tr>
+<tr>
+<td>X</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Transaction Server Core Documentation</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Transaction Server Development</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transaction Server Development</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transaction Server Development Documentation</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visual Basic Transaction Server Add-In</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td><strong>Visual InterDev RAD Remote Deployment Support</strong><br>
+Enables the remote deployment of applications on your Web server by using Microsoft&reg;&nbsp;Visual InterDev&#153;.</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;&nbsp;&nbsp;Visual InterDev RAD Remote Deployment Support</td>
+</tr>
+</table>
+
+
+<p><strong>Notes</strong>&nbsp;&nbsp;&nbsp;The components in Windows&nbsp;NT 4.0 Option Pack can only be installed on computers running Windows&nbsp;NT Server 4.0, Windows&nbsp;NT Workstation 4.0, or Windows 95.  Windows&nbsp;NT 4.0 Option Pack <em>cannot</em> be installed on computers running the Beta&nbsp;1.0 version of Windows&nbsp;NT 5.0.</p> 
+
+<big>To install Personal Web Server</big><!--</p>--><br>
+
+
+<ol>
+<li>You are not required to remove previous versions of PWS before installing this version, unless you installed the Alpha or Beta&nbsp;2 versions of the product. To remove the Alpha or Beta&nbsp;2 versions, use the <strong>Remove All</strong> button in Personal Web Server Setup. You are also required to remove the previous version of Winsock&nbsp;2 installed with the Alpha and Beta&nbsp;2 versions. </li>
+
+
+
+<p>See <a href="iigtass.htm">Troubleshooting</a> for more information.</p>
+
+
+
+<li>Select the Personal Web Server link and install PWS. </li>
+
+
+
+<li>Restart your computer following the installation process. If you are installing over the Internet, select your platform and follow the on-screen instructions.</li>
+
+<p><strong><span style="color: #0000FF"><font color="#0000FF">Important</font > </span></strong>&nbsp;&nbsp;&nbsp;PWS installation requires Microsoft Internet Explorer version&nbsp;4.01 to be installed on your computer. If you choose not to install Internet Explorer&nbsp;4.01, you are effectively cancelling installation of PWS. In addition, removing or reinstalling Internet Explorer&nbsp;4.01 after PWS is installed will result in the Web server not functioning.<!--</p>-->
+<br>
+
+
+<p><strong><span style="color: #FF0000"><font color="#0000FF">Caution</font >
+</span></strong>&nbsp;&nbsp;&nbsp;ODBC installation errors will occur during setup if there are any other applications or system services running that use the existing ODBC components on the system.  If any ODBC errors occur, please stop all desktop and system service applications, and run Setup again.<!--</p>--><br>
+
+<li>To use PWS on a computer that is not connected to a network, you must use the following procedure: 
+
+<ol>
+	<li>Rename the file Hosts.sam, located in the \Windows directory to Hosts (no extension).</li>
+	<li>Open Hosts file in a text editor. Add an entry that maps 127.0.0.1 to your machine name, then save your changes.</li>
+	<li>Click <strong>Start</strong>, point to <strong>Settings</strong>, then click <strong>Control Panel</strong>.</li>
+	<li>Double-click the <strong>Network</strong> icon.</li>
+	<li>On the Configuration property sheet, under <strong>The following network components are installed</strong> select <strong>TCP/IP Dial Up Adapter</strong>, then click <strong>Properties</strong>.</li>
+	<li>On the <strong>IP Address</strong> property sheet, select <strong>Specify an IP address</strong>.</li>
+	<li>In the <strong>IP Address</strong> box, enter 1.2.3.4.</li>
+	<li>In the <strong>Subnet Mask</strong> box, enter 255.0.0.0.</li>
+	<li>Click <strong>OK</strong>.</li>
+	       <li>You may need to insert your Microsoft Windows&nbsp;95 CD , and then restart you computer for changes to take effect.  </li>
+
+</ol>
+
+
+<p class="note"><strong>Note</strong>&nbsp;&nbsp;&nbsp;Before dialing up to your Internet Service Provider, on the <strong>IP Address</strong> property sheet you will need to reset the settings in the IP Address property sheet to <strong>Obtain an IP Address automatically</strong>.</p>
+
+</ol>
+
+
+<dl>
+<dt><strong>Setup.exe is not code signed.</STRONG>
+<dd>When running setup from the PWS CD through the setup Web page, Internet Explorer will display an error message indicating that Setup.exe has not been code signed.  Setup.exe is a 16-bit file and 16-bit file formats cannot be code signed.
+</dl>
+</ol>
+
+
+
+
+
+<hr>
+
+<h1><a name="UsingPWSProductDocumentation">Product Documentation</a></h1>
+
+<p>All documentation for the product is available online. You can view the Help topics by clicking <strong>Start</strong> and pointing to the program group where the product is installed, or by using the <strong>Help</strong> menu of the administration tool. Context-sensitive help is also available by pressing the F1 key while viewing a property sheet or dialog box.</p>
+
+<h2>Using the Documentation</h2>
+
+<p>Please observe the following guidelines when using the online documentation:</p>
+
+<ul>
+
+<li>If you click the print icon in the Option Pack product documentation <strong>Contents</strong> frame and select the option <strong>Print everything contained in the current heading</strong>, you may experience a temporary performance degradation on the server if the selected section contains a large number of topics. (For this reason, the option <strong>Print everything in the contents</strong> is <em>not</em> available with this release.)</li> 
+
+<p>Pages printed by using the Contents print icon will not include graphics or linked documents. Also, the Contents print icon does not work in conjunction with the sample scripts and programs found in the Developer Samples section of the PWS documentation. If you select a topic in the Developer Samples section and click the Contents print icon, you will receive an error message indicating that the file cannot be found.</p>
+
+<p>An alternative way to print individual  topics is to right-click a topic and then click <strong>Print</strong>.</p>
+
+
+
+<li>If Internet Explorer displays an HTTP 1.1/404 Object Not Found error message when viewing your are attempting to view the documentation, then the file(s) that you are attempting to view may not have been installed during setup. To install the file(s), run Setup again and choose the appropriate documentation option.</li>
+
+<li><p>The WWW service must be installed and the server must be running in order to view the documentation (with the exception of the release notes and troubleshooting files). If Web Site is stopped, when you click <strong>Product Documentation</strong> you will get an error message saying "A connection with the server could not be established."  If you get this error, start Personal Web Manager and check the status of the Web Site; if stopped, then start the service.</p>
+
+<li><p>Most navigation of the documentation occurs in the left frame. To view the table of contents, click the <strong>Contents</STRONG> button. Click a heading to view the pages that contain summaries of the information included in that section of the contents tree. Expand and collapse branches of the contents tree to view or hide topic sections.</p>
+
+<li><p>To view the index, select the <strong>Index</STRONG> property sheet in the left frame. Type a word to advance to the portion of the index that is closest to the word you type. Double-click a topic to see the topic or a list of topics containing the keyword.</P>
+
+<p><strong>Note</strong>&nbsp;&nbsp;&nbsp; Depending on the browser you use, the left frame navigational devices are either ActiveX&#153; controls (on Internet Explorer) or Java controls (on Netscape browsers); therefore, if you do not see the table of contents in the left frame, ensure that you have  the following browser settings. For Internet Explorer, set your browser security to Medium and enable ActiveX controls and plug-ins. For Netscape browsers, enable Java and JavaScript.</p>
+
+<li><p>Some of the functionality available in the documentation's left frame, such as the table of contents (TOC) synchronization button, may not function properly if you have a previous version of Hhctrl.ocx installed. Because version control for this file has not been activated in the documentation, please search for Hhctrl.ocx and delete any copies of this file found on your local drive. The next time you access the documentation, you will be prompted to accept the certificate that will install the updated TOC control.</P>
+
+</ul>
+
+<hr>
+
+<h1><a name="OtherKnownProblemsandLimitations">Other Known Problems and Limitations</a></h1>
+
+<p>The following list contains problems and limitations that are known to exist in this release:</p>
+
+<ul>
+
+<li>Personal Web Server does not support FTP services.</li>
+
+<li>If you are upgrading from a previous version of PWS and you have trouble viewing Default.asp, then you probably have an older version of this file. In order to install the newer PWS&nbsp;4.0 version of this file, you must manually remove the older version of Default.asp.  The location is C:\InetPub\Wwwroot.</li>
+
+<li>In some cases, files left behind from an earlier installation of the FrontPage Server Extensions may prevent newer versions of this component from installing correctly.  If PWS Setup reports errors during the installation of FrontPage Server Extensions, or if PWS, Microsoft FrontPage, or Microsoft Visual InterDev fail when connecting to a FrontPage Web, use the following procedure to correct the problem:</li>
+
+	<ol>
+	<li>Run PWS Setup, choose <strong>Add/Remove</strong> and uninstall the <strong>FrontPage Server Extensions</strong>.</li>
+	<li>In the \Windows\System\ directory, delete the following files: Fp30txt.dll, Fp30utl.dll and Fp30wel.dll.</li>
+	<li>Delete the \Program Files\Microsoft FrontPage\version3.0 directory including all files and sub-directories.</li>
+	<li>Run IIS Setup and reinstall the <strong>FrontPage Server Extensions</strong>.</li>
+	</ol>
+
+<li>Errors that occur during unattended setup will be written to the Windows&nbsp;95 registry.  Navigate to the following registry path for error information:<br>
+HKEY_LOCAL_MACHINE\<br>
+&nbsp;Software<BR>
+&nbsp;&nbsp;\Microsoft<BR>
+&nbsp;&nbsp;&nbsp;\Windows<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;\Setup<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\OCmanager<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\Errors</li>
+
+<li>Running Personal Web Server&nbsp;4.0 on a computer with an Intel 486 processor that is slower than 50&nbsp;MHz and has 16&nbsp;megabytes or less of RAM, increases the likelihood that the script engines degrade into a <em>memory heap packing mode</em>, a process which will prevent the the server from accepting new connections.  The heap packing process may take 20 to 30 minutes to complete (depending on the speed of the microprocessor).</li>
+
+<li><strong>Active Server Pages</strong></li>
+
+	<ul>
+<li>If the only database you use with Active Server Pages&reg;&nbsp;(ASP) is Microsoft SQL Server&#151;that is, you never use Microsoft Access (.mdb) files with ASP&#151;and you create instances of the Database Access Component that you store in the <strong>Session </strong> object, you can enhance performance by changing the threading model for Database Access Component instances from Apartment to Both in the registry. To change from Apartment to Both, double-click Makefre15.bat in the Program Files\Common Files\System\Ado folder.</li>
+
+<p>To reverse this process, (that is, to change the threading model from Both to Apartment) double-click Makeapt15.bat in the Program Files\Common Files\System\Ado folder.</p>
+
+<p><strong>Note</strong>&nbsp;&nbsp;&nbsp;We recommend that you do <Em>not</Em> store instances of the Database Access Component in the <strong>Session </strong> object.</p>
+
+<li>There is a mistake in the ASP documentation which states that the MapPath method does not support relative path syntax, such as ./<em>path</em> or ../<em>path</em>.  The MapPath method supports relative path syntax if the Enable Parent Paths metabase property is enabled. When the Enable Parent Paths property is not enabled, using the MapPath method with a relative path results in an error.</li>
+
+<li>The Scripting.Dictionary object is erroneously marked as Both-threaded.  It should be marked as Apartment-threaded.  To change this, use the Registry Editor to open the following registry key:</li><br>
+
+HKEY_CLASSES_ROOT\<br>
+&nbsp;&nbsp;CLSID<br>
+&nbsp;&nbsp;&nbsp;\{EE09B103-97E0-11CF-978F-00A02463E06F}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;\InprocServer32<br>
+
+<p>Change the named value for ThreadingModel to Apartment.  If you use the Dictionary object at Application scope without making this change, corruption of data may occur.</p>
+
+<li>If you change the network bindings on a running Web site with active users, then those users will be disconnected.</li>
+
+
+<li>Properties set for the ASP Request, Response, and Server objects are valid only during the processing of a request.  For example, if you set a property in Global.asa, such as Response.Buffer = True, the property will only apply to a single request and not to all requests.</li>
+
+<li>There are currently known problems with using PerlScript with ASP.  If you are running PerlScript from ActiveWare, contact ActiveWare for a new PerlScript engine.</li>
+
+<li>The Scripter's Reference documentation enumerates properties in the MyInfo object and states that Personal Web Server initializes these properties. Although this information is valid for a Macintosh installation of Personal Web Server on the Macintosh computer, this information is may not be valid for a Windows 95 installation of Personal Web Server. None of the properties enumerated in the Scripter's Reference documentation exist when MyInfo is first instantiated. Rather, these properties are created during execution by means of an assignment statement. This means that if a property does not exist, querying for its value will return an empty string and any attempt to use the property in an expression will return an error.</li>
+	
+<li>If you create or use components developed in Microsoft&reg;&nbsp;Visual Basic 5.0&#153;&nbsp;(Enterprise or Professional Editions) for use with ASP, it is strongly recommended that you upgrade to Visual Studio 97 Service Pack 2, both for your development and server computers.</li>   
+
+<p>You can download the Visual Studio 97 Service Pack 2 at <a href="http://www.microsoft.com/vstudio/sp/">http://www.microsoft.com/vstudio/sp/</a>.</p>
+
+
+
+	</ul>
+
+<li>Some network access features in this release of Windows&nbsp;NT Internet Connection Services for Microsoft Remote Access Service were designed to meet the specific needs of Public Network Operators and Internet Service Providers (ISPs). These features are being released in total to facilitate distribution and interoperability testing, as well as ensure quality of service implementations upon market release. These ISP-centric features will not be available in the final version of Windows&nbsp;NT Server. These features will instead be made available in a future release specifically designed for Public Network Operators and ISPs. For more information on these new VPN technologies, and to determine what specific features will be made available in Windows&nbsp;NT Server, visit the Windows&nbsp;NT Communications Web site located at <a href="http://www.Microsoft.com/communications/" target="_top">http://www.microsoft.com/communications/</a>.</li>
+
+<p>For example, if <em>publicdir</em> is the share name on the source computer that can be accessed by the destination computer, you would type <strong>publicdir</strong> for the Replication share.</P>
+
+
+<li>When running Java components on a busy server, it is possible for the java virtual machine (VM) to become locked during initialization, as a result of being initialized from 40 or more threads.  This only occurs the first time the Java VM is initialized per process.  As a workaround, add the following code to the Global.asa file for your application (the "YourJavaObject" can be a dummy component that does nothing).</li>
+
+<pre><font face="courier" size="3">
+&lt;SCRIPT LANGUAGE=vbscript  RUNAT=SERVER&gt;
+
+Sub Application_OnStart
+	set initobj = Server.CreateObject("YourJavaObject")
+
+End Sub
+
+&lt;/SCRIPT&gt;</font ></pre>
+
+<li>You can only publish files from your local drive.  For security reasons, the Personal Web Manager publishing wizard will not publish a file that resides on a network drive.</li>
+
+<li>In the home page wizard of Personal Web Manager, the stylesheet graphics associated with the home page templates are best viewed with Internet Explorer&nbsp;4.01.  Subtle differences between the way the home page template appears in IE&nbsp;3.0 and Netscape are normal.</li>
+
+<li>Internet Explorer versions&nbsp;3.0 and 4.0 ignore line break characters in text fields. To break a line in a text field entry, add the &lt;BR&gt; HTML tag to the end of each line.</li>
+
+<li>ActiveX Data Objects (ADO) uses the standard COM method of passing error information but ADO does not check to see if any other information has been put into the ErrorInfo object , erasing this object it when it destructs. There is a code workaround for this problem in Microsoft&reg;&nbsp;Visual Basic&reg;, Visual&nbsp;C++&reg;, and Visual&nbsp;J++&#153;&nbsp;that should be implemented in your error handler.</li>
+
+<p>For Visual Basic, the code should read:</P>
+
+<pre><font face="courier">
+ErrorHandler:
+    ' cleanup
+    If Not adoRS Is Nothing Then
+	Set adoRS = Nothing
+    End If
+    If Not adoConn Is Nothing Then
+	Set adoConn = Nothing
+    End If
+    
+    Err.Raise Err.Number, "Bank.Accout.Post", Err.Description
+
+Exit Function
+</font ></pre>
+
+<p>For Visual C++, the code should read:</P>
+
+<pre><font face="courier">
+//
+// ErrorInfo is saved here because the following   
+// ADO cleanup code may clear it.
+//
+IErrorInfo * pErrorInfo = NULL;
+GetErrorInfo(NULL, &pErrorInfo);
+
+if (adoRsBalance) adoRsBalance->Release();
+if (adoCoConnection) adoCoConnection->Release();
+
+AtlReportError( CLSID_CAccount, pErrMsg, IID_IAccount, hr);
+
+//
+// put the error back in TLS
+//
+SetErrorInfo(NULL, pErrorInfo);
+</font ></pre>
+
+<p>For Visual J++, the code should read:</P>
+
+<pre><font face="courier">
+if (adoRsBalance != null) {
+	if (adoRsBalance.getState() == ObjectStateEnum.adStateOpen)
+		adoRsBalance.Close();
+	ComLib.release (adoRsBalance);
+}
+
+if (adoConn != null) {
+	if (adoConn.getState() == ObjectStateEnum.adStateOpen)
+		adoConn.Close();
+	ComLib.release (adoConn);
+}
+</font ></pre>
+
+<p><strong>Note</STRONG>&nbsp;&nbsp;&nbsp;In Visual J++ you must explicitly close recordsets and/or connections as well as explicitly release the ADO objects.</P>
+
+<li>When Remote Data Service (RDS)&nbsp;1.5 is installed as a server on Windows&nbsp;95 or  Windows&nbsp;98 Beta&nbsp; using Personal Web Server it does not function. This will be addressed in a later release of the Remote Data Service. Currently, RDS will successfully run from Windows&nbsp;NT Server or Workstation, on x86 or Alpha platforms.</li>
+
+
+<li>If you are writing server-side components in Java and you want to use Microsoft&reg;&nbsp; Visual J++&#153;&nbsp;1.1 to debug your components, use the following procedure:</li>
+
+<ol>
+<li>Build debug .class files for the Java classes you want to debug.</li>
+<li>Ensure that the PWS application that calls your Java component is set to run in process (the default setting). This debugging mechanism does not work with out of process applications.</li>
+<li>In Visual J++, open the project containing your Java classes, click the <strong>Project</strong> menu, click Settings, then click the Debug property sheet. </li>
+<li> In the <strong>Category</strong> list, select <strong>General</strong>. </li>
+
+<li>In the <strong>Class for debugging/executing</strong> box, enter the full class name (including the package name)  of the class you want  to debug.  Do not include a file extension. For example, you can enter  "IISSample.HelloWorld" as a class name; Visual J ++ <em>is</em> case sensitive.</li>
+
+<li>Under  <strong>Debug/Execute project under</strong>, select <strong>Stand-alone interpreter (applications only)</strong>.</li>
+<li>In the <strong>Category</strong> list, select <strong>Stand-alone interpreter</strong>.  Under <strong>Stand-alone interpreter</strong>, type the full path to the Inetinfo.exe file on your system.  For example, if applicable you can type C:\Winnt\System32\Inetsrv\Inetinfo.exe, which is the default location for Inetinfo.exe. </li>
+
+<li>Under <strong>Stand-alone interpreter arguments</strong> type <strong>-e&nbsp;w3svc</strong>. </li> 
+
+<p class="note"><strong>Note</strong>&nbsp;&nbsp;&nbsp;Leave the <strong>Program Arguments</strong> box blank, otherwise the procedure will not work.
+</p>
+
+<li>Click <strong>OK</strong>.</li>
+<li> in Visual J++, set a breakpoint in your Java class.</li>
+<li> In the <strong>Build</strong> menu, choose <strong>Start Debug</strong>, then click <strong>Go</strong>.</li>  This step will start Inetinfo.exe as a process.
+
+<p class="note"><strong>Note</strong>&nbsp;&nbsp;&nbsp;Selecting <strong>Execute</strong> &lt;<em>class name</em>&gt;  will not initiate debugging.</p>
+
+<li>After the Visual J++ debugger  has started, invoke your Java class by opening the .asp file that invokes your class. You have approximately 30  seconds to invoke your code before the Visual J++ debugger will time out.  After the debugger reaches the breakpoint, Visual J++ will no longer enforce the timeout, so you can proceed with debugging your component.</li>
+</ol>
+</ul>
+
+<hr>
+
+
+<h1><a name="ProvidingFeedback">Providing Feedback</a></h1>
+
+<p>Peer-to-peer newsgroups are available to help you interact with other users of our products, including Microsoft Most Valuable Professionals (MVPs). You can use any newsreader software to access these newsgroups. Regardless of the newsreader or news client you are using, you may need to configure it to read the newsgroups. When prompted for News Server, type <strong>msnews.microsoft.com</strong>. You do not need to enter an account name or password. Before posting to the newsgroups, please review the Microsoft Newsgroup Rules of Conduct. For more information about Microsoft newsgroups please see <a href="http://www.microsoft.com/support/news/" target="_top" >http://www.microsoft.com/support/news/</a> and select <strong>Personal Web Server</strong>. </p>
+
+<p>Newsgroups supporting the Personal Web Server 4.0 will become available in the near future. You should refresh your newsgroup subscriptions often in order to find the latest newsgroup for this product.</p>
+
+
+
+
+
+<hr>
+<h1><a name="techsupport">Microsoft Technical Support</a></h1>
+
+<p>If you have a technical question about Microsoft&reg; Personal Web Server, use this online documentation or consult Help by pressing F1 during a procedure. If you still have a question, Microsoft offers technical support and services ranging from self-help tools to direct assistance with a Microsoft Technical Support Engineer.</p>
+
+<p><strong>Note</strong>&nbsp;&nbsp;&nbsp;The services and prices listed here are available in the United States and Canada only (see <EM><strong>Technical Support Worldwide</STRONG></EM> below).</p>
+
+<h2>Self-Help Tools to Find Answers Yourself</h2>
+
+<p><strong>Microsoft Technical Support Online:</STRONG> This innovative site uses the cutting-edge technology of Microsoft to help you access the most relevant technical information and resources to answer your support questions.  Use the Troubleshooting Wizards to easily diagnose and answer technical questions.  Or select technical articles, programming aids, or commonly asked questions from the Microsoft Knowledge Base of over 75,000 articles.  Visit <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A> today and see how easy it is to find the answers you need.</P>
+
+<h2>Direct Assistance with a Microsoft Technical Support Engineer</h2>
+
+<p><strong>Standard No-Charge Support:</STRONG> Support for Personal Web Server is provided as part of the support available for Windows 95.  Specifically:</P>  
+
+<blockquote>90 days of no-charge support (excluding connectivity issues), beginning with the first time you contact a technical engineer. Please note that your 90 days of no-charge support for both Personal Web Server and Windows 95 begins the first time you call, regardless of which product you activate support on.</blockquote>
+
+<p>To receive Standard No-Charge Support, in the U.S., please call (425) 635-7000 6:00 A.M. to 6:00 P.M. Pacific time, Monday through Friday, excluding holidays.  In Canada, please call (905) 568-4494, 8:00 A.M. to 8:00 P.M. Eastern time, Monday through Friday, excluding holidays. Note: Toll-charges may apply.</P>
+
+<p><EM>*If your Microsoft product was pre-installed or distributed with your personal computer, the personal computer manufacturer is responsible for providing your product support.  For support, contact the manufacturer or source from which you obtained your Microsoft product.</EM></P>
+
+<p><strong>Pay-Per-Incident Support:</STRONG> If you require support after normal business hours, or if your 90 days of Standard No-Charge Support, as described above, have expired, you can purchase Pay-Per-Incident Support.  In the U.S., for a fee of $35US per incident, please call (800) 936-5700 or (900) 555-2000, 24 hours a day, seven days a week, including holidays.  In Canada, for a fee of $45CDN plus tax per incident, please call (800) 668-7975, 8:00 A.M. to 8:00 P.M. Eastern time, Monday - Friday, excluding holidays.</P>
+
+<p><strong>Note</strong>&nbsp;&nbsp;&nbsp;Support fees for the (800)# calls will be billed to your VISA, MasterCard, or American Express credit card. Support fees for the (900)# calls will appear on your telephone bill.</p>
+  
+<p><strong>Priority Annual Support:</STRONG> If you anticipate a high volume of support incidents, or need priority access to Microsoft Technical Support Engineers, you can purchase a Priority Annual Desktop Account.</P>
+
+<p>In the U.S., for more information or to purchase an annual account, at a cost of $295US per 10 incidents, please call (800) 936-3500, 24 hours a day, 7 days a week, including holidays.  To submit an incident against an existing account, call (800) 936-4700, 24 hours a day, 7 days a week, including holidays.</P>
+
+<p>In the Canada, for more information, to purchase an annual account at a cost of $295CDN plus tax per 10 incidents, or to submit an incident against an existing account, please call (800) 668-7975, 8:00 A.M. to 8:00 P.M. Eastern time, seven days a week, excluding holidays.</P>
+  
+<p><strong>Submitting questions via the Internet</STRONG>: In the U.S. and Canada, you can also submit your Standard No-Charge, Pay-Per-Incident or Priority Annual support questions via the Internet with Web Response.  For more details, go to Microsoft Technical Support Online at <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A>.</P>
+	
+<h2>Additional Support Options</h2>
+
+<p><strong>Support Programs and Services:</STRONG> Microsoft Technical Support also offers professional support programs and services for medium-sized and large businesses that require more than just standard incident resolution.  For more information, see the Technical Support section of the Help file, or visit Microsoft Technical Support Online at <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A>.</P>
+
+<p><strong>Text Telephone:</STRONG> Microsoft text telephone (TTY/TTD) services are available for the deaf or hard-of-hearing. In the United States, using a TTY/TTD modem, dial (425) 635-4948. In Canada, using a TTY/TTD modem, dial (905) 568-9641.</P>
+
+<p><strong>Technical Support Worldwide:</STRONG> Support services and prices may vary outside the United States and Canada.  For information on support available outside the U.S. and Canada, contact the local Microsoft subsidiary in your area.  For a list of worldwide Microsoft subsidiaries, see the Technical Support section of the Help file, or visit Microsoft Technical Support Online at <A href="http://www.microsoft.com/support/" target="_top">http://www.microsoft.com/support/</A>.</P>
+
+<p><strong>Note</strong>&nbsp;&nbsp;&nbsp;The services and prices listed here are available in the United States and Canada only.  Support services may vary outside the U.S. and Canada.  For more information on support in other locations, contact your local Microsoft subsidiary.<br>
+
+Microsoft's support services are subject to Microsoft's then-current prices, terms, and conditions, which are subject to change without notice.</P>
+
+
+
+
+
+
+
+
+
+
+	
+<hr>
+
+<h1><a name="CopyrightInformation">Copyright Information</a></h1>
+
+<p>&copy; 1997 Microsoft Corporation </p>
+
+<p>These materials are provided &#147;as-is,&#148; for informational purposes only.</p>
+
+<p>Neither Microsoft nor its suppliers makes any warranty, express or implied with respect to the content of these materials or the accuracy of any information contained herein, including, without limitation, the implied warranties of merchantability or fitness for a particular purpose. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you.</p>
+
+<p>Neither Microsoft nor its suppliers shall have any liability for any damages whatsoever including consequential, incidental, direct, indirect, special, and lost profits. Because some states/jurisdictions do not allow exclusions of implied warranties, the above limitation may not apply to you. In any event, Microsoft&#146;s and its suppliers&#146; entire liability in any manner arising out of these materials, whether by tort, contract, or otherwise shall not exceed the suggested retail price of these materials.</p>
+
+
+<hr>
+
+
+<p align="center"><a href="../../../common/iiadden.htm">Addendum to end-user license agreement for Microsoft Software</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</font >
+</body>
+</html>
